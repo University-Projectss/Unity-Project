@@ -11,5 +11,5 @@ Jocul are loc intr o arena unbounded(daca totul merge bine), iar actiunea va fi 
  - [name here](https://github.com/AdelaCorbeanu)
  - [name here](https://github.com/irinaenescu2002)
  - [name here](https://github.com/Qmpzlawasd)
- - [name here](https://github.com/widdrr)
+ - [Andrei Tava](https://github.com/widdrr)
  - [Robert Udrea](https://github.com/rob3rtu)
