@@ -8,7 +8,7 @@ Jocul are loc intr o arena unbounded(daca totul merge bine), iar actiunea va fi 
 
 
 # Team
- - [name here](https://github.com/AdelaCorbeanu)
+ - [Adela Corbeanu](https://github.com/AdelaCorbeanu)
  - [name here](https://github.com/irinaenescu2002)
  - [name here](https://github.com/Qmpzlawasd)
  - [Andrei Tava](https://github.com/widdrr)
