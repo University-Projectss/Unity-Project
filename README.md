@@ -1,10 +1,10 @@
 # About
-Jucatorul controleaza un avion vazut din 3rd person. Avionul are urmatoarele functionalitati: zbor liber, shooting. Avionul se poate prabusi si exploda la contact prea puternic cu obiecte. Avionul trage cu gloante in directia de miscare.
+The player controls a plane in 3rd person view. The plane has the following functionalities: free flight and shooting. The plane can crash and explode if it comes into contact with objects too strongly. The plane fires bullets in the direction of movement.
 
-Jocul are loc intr o arena unbounded(daca totul merge bine), iar actiunea va fi de tipul endless wave based. Fiecare wave va creste in dificultate, Wave-urile vor contine diverse provocari:
- - tipul principal de wave este survial / elimination, in care se vor spawna diversi inamici in arena (alte avioane, poate si trupe terestre), scopul principal fiind fie eliminarea tuturor inamicilor sau supravietuirea o perioada de timp
- - pot exista si alte de tipuri(TBD), precum zbor prin obstacole
+The game takes place in an unbounded arena (if everything goes well) and the action will be endless wave based. Each wave will increase in difficulty and the waves will contain various challenges:
 
+- the main type of wave is survival/elimination, in which various enemies will spawn in the arena (other planes, maybe also ground troops); the main goal will be either the elimination of all enemies or survival for a period of time
+- there may be other types (TBD), such as flying through obstacles
 
 
 # Team
