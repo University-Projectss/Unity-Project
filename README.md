@@ -6,6 +6,9 @@ The game takes place in an unbounded arena (if everything goes well) and the act
 - the main type of wave is survival/elimination, in which various enemies will spawn in the arena (other planes, maybe also ground troops); the main goal will be either the elimination of all enemies or survival for a period of time
 - there may be other types (TBD), such as flying through obstacles
 
+# Review
+ For review, please open an issue. 
+
 
 # Team
  - [Adela Corbeanu](https://github.com/AdelaCorbeanu)
