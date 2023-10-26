@@ -331,7 +331,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.455784, y: -1.0787416, z: -5.99625}
-  m_LocalScale: {x: 17.84014, y: 1, z: 99.6478}
+  m_LocalScale: {x: 254.4679, y: 1, z: 340.925}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -366,57 +366,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52dc809c154fac45a4a22c3efc8d0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxThrust: 25000
-  Throttle: 0.433
-  LiftPower: 1.5
-  InducedDrag: 5
-  LiftCoefficientCurve:
+  _maxThrust: 3000
+  _throttle: 0
+  _wingPower: 1.5
+  _rudderPower: 1.5
+  _inducedDragFactor: 0.5
+  _angularDragCoefficients: {x: 5, y: 5, z: 5}
+  _liftCoefficientCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -90.101974
-      value: -0.008680999
-      inSlope: -0.0165197
-      outSlope: -0.0165197
-      tangentMode: 34
+      time: -90.389694
+      value: -0.019946292
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -49.820198
+      value: -0.30670202
+      inSlope: -0.016230738
+      outSlope: -0.016230738
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -30.031113
+      value: -0.99961054
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -1.3923167
+      value: 0.09107016
+      inSlope: 0.033414204
+      outSlope: 0.033414204
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 29.960682
+      value: 1.0049677
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 50.211082
+      value: 0.3465659
+      inSlope: -0.016270854
+      outSlope: -0.016270854
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 90.10855
+      value: 0.026310563
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _dragCoefficientCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: -30.066074
-      value: -1.000456
-      inSlope: 0.00006423323
-      outSlope: 0.00006423323
+      time: 100.359436
+      value: 1.0024414
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.11363173
-      value: -0.0030411757
-      inSlope: 0.01676286
-      outSlope: 0.01676286
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.1032368
-      outWeight: 0.21259673
-    - serializedVersion: 3
-      time: 30.119152
-      value: 0.9989059
-      inSlope: 0.00006058645
-      outSlope: 0.00006058645
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 90.03015
-      value: 0.0025805235
-      inSlope: -0.01663009
-      outSlope: -0.01663009
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -456,7 +500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128738497}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0019385847, y: -0.02949075, z: -0.011731247, w: 0.9994944}
+  m_LocalRotation: {x: -0.0022862079, y: -0.00002667572, z: -0.011667283, w: 0.99992937}
   m_LocalPosition: {x: 8, y: -0.07, z: -473.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -465,7 +509,7 @@ Transform:
   - {fileID: 1912261062}
   - {fileID: 1629458117}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -0.262, y: -3.377, z: -1.337}
+  m_LocalEulerAnglesHint: {x: -0.262, y: 0, z: -1.337}
 --- !u!1 &1629458116
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,9 +561,9 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -585,6 +629,7 @@ GameObject:
   - component: {fileID: 1912261065}
   - component: {fileID: 1912261064}
   - component: {fileID: 1912261063}
+  - component: {fileID: 1912261066}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -710,6 +755,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1912261066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912261061}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e771b052a7f2ec3499b0304661e1c44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957349203
 GameObject:
   m_ObjectHideFlags: 0
