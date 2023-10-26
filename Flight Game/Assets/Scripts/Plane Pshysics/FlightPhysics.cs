@@ -74,7 +74,6 @@ public class FlightPhysics : MonoBehaviour
     }
 
     // Update is called once per frame
-
     //THIS IS TEMPORARY CODE FOR THE PURPOSE OF TESTING THE PHYSICS!!!!
     void Update()
     {
@@ -123,6 +122,7 @@ public class FlightPhysics : MonoBehaviour
 
     private void DetermineState()
     {
+        //Transforming velocities to Local Space
         _velocity = transform.InverseTransformDirection(_rigidBody.velocity);
         _angularVelocity = transform.InverseTransformDirection(_rigidBody.angularVelocity);
 
@@ -137,16 +137,15 @@ public class FlightPhysics : MonoBehaviour
         _sideslipAngle = Mathf.Atan2(_velocity.x, _velocity.z);
     }
 
-    private void ApplyThrust()
-    {
+    private void ApplyThrust() =>
         _rigidBody.AddRelativeForce(_throttle * _maxThrust * Vector3.forward);
-    }
 
     private void ApplyLift()
     {
         //Applying wing lift
         Vector3 wingLift = ComputeLiftAndInducedDrag(_angleOfAttack + _flap, Vector3.right, _liftCoefficientCurve, _wingPower, _inducedDragFactor);
         _rigidBody.AddRelativeForce(wingLift);
+        
         //Applying rudder "lift"
         Vector3 rudderLift = ComputeLiftAndInducedDrag(_sideslipAngle, Vector3.up, _liftCoefficientCurve, _rudderPower, _inducedDragFactor);
         _rigidBody.AddRelativeForce(rudderLift);
@@ -155,13 +154,12 @@ public class FlightPhysics : MonoBehaviour
 
     private Vector3 ComputeLiftAndInducedDrag(float angle, Vector3 rightAxis, AnimationCurve coefficientCurve, float liftFactor, float inducedDragFactor)
     {
-        
+        //Determine the Lift Coefficient for the given Attack Angle
         float liftCoefficient = coefficientCurve.Evaluate(angle * Mathf.Rad2Deg);
 
         //We only consider the Velocity projection onto the plane normal to rightAxis
         Vector3 liftVelocity = Vector3.ProjectOnPlane(_velocity, rightAxis);
         
-        //The lift direction is perpendicular to the plane spanned by the velocity and right axis
         Vector3 liftDirection = Vector3.Cross(liftVelocity, rightAxis).normalized;
         float liftMagnitude = liftCoefficient * liftVelocity.sqrMagnitude * liftFactor;
 
