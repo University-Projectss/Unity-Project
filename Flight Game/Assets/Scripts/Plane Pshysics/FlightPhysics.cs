@@ -160,6 +160,7 @@ public class FlightPhysics : MonoBehaviour
         //We only consider the Velocity projection onto the plane normal to rightAxis
         Vector3 liftVelocity = Vector3.ProjectOnPlane(_velocity, rightAxis);
         
+        //Lift is perpendicular to the movement direction
         Vector3 liftDirection = Vector3.Cross(liftVelocity, rightAxis).normalized;
         float liftMagnitude = liftCoefficient * liftVelocity.sqrMagnitude * liftFactor;
 
