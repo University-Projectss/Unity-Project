@@ -7,7 +7,7 @@ The game takes place in an unbounded arena (if everything goes well) and the act
 - there may be other types (TBD), such as flying through obstacles
 
 # Review
-For reviews, please open [GitHub issues](https://github.com/rob3rtu/Unity-Project/issues) and add the `review` label.
+For reviews, please open [GitHub issues](https://github.com/rob3rtu/Unity-Project/issues) with `Review Tempate`.
 
 
 # Team
