@@ -1,5 +1,5 @@
 ---
-name: Review Issue Template
+name: Review Template
 about: Review issue
 title: ''
 labels: review
