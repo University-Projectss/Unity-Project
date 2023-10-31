@@ -366,8 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52dc809c154fac45a4a22c3efc8d0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxThrust: 3000
-  _throttle: 0
+  _maxEnginePower: 3000
+  _throttle: 1
   _wingPower: 1.5
   _rudderPower: 1.5
   _inducedDragFactor: 0.5
@@ -501,13 +501,13 @@ Transform:
   m_GameObject: {fileID: 1128738497}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0022862079, y: -0.00002667572, z: -0.011667283, w: 0.99992937}
-  m_LocalPosition: {x: 8, y: -0.07, z: -473.2}
+  m_LocalPosition: {x: 8, y: 0.79, z: -473.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 496213146}
-  - {fileID: 1912261062}
   - {fileID: 1629458117}
+  - {fileID: 1912261062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.262, y: 0, z: -1.337}
 --- !u!1 &1629458116
@@ -645,8 +645,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912261061}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17911652, y: -0, z: -0, w: 0.9838279}
-  m_LocalPosition: {x: -0.1, y: 6.1, z: -7.4}
+  m_LocalRotation: {x: 0.17911652, y: 1.0186339e-10, z: -4.347384e-10, w: 0.9838279}
+  m_LocalPosition: {x: -0.087808, y: 6.1, z: -7.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -737,7 +737,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912261061}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e771b052a7f2ec3499b0304661e1c44c, type: 3}
   m_Name: 
