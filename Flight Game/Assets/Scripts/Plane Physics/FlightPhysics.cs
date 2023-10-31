@@ -1,12 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using Unity.Mathematics;
-using UnityEditor.Animations;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class FlightPhysics : MonoBehaviour
 {
@@ -14,7 +7,7 @@ public class FlightPhysics : MonoBehaviour
     [SerializeField]
     private float _maxEnginePower;
 
-    [Range(0,1)]
+    [Range(0, 1)]
     [Tooltip("The fraction of the Engine Power currently applied")]
     [SerializeField]
     private float _throttle;
@@ -159,18 +152,33 @@ public class FlightPhysics : MonoBehaviour
         _rigidBody.AddRelativeTorque(angularDrag, ForceMode.Acceleration);
     }
 
+    /// <summary>
+    /// Applies a force to the object making it rotate along the Z axis
+    /// </summary>
+    /// <param name="magnitude">The strength of the force. If negative, the object rolls to the right</param>
+    /// <returns></returns>
     public void ApplyRollTorque(float magnitude = 1f)
     {
         magnitude = Mathf.Clamp(magnitude, -_steeringLimits.z, _steeringLimits.z);
         _rigidBody.AddRelativeTorque(Vector3.forward * magnitude, ForceMode.VelocityChange);
     }
 
+    /// <summary>
+    /// Applies a force to the object making it rotate along the X axis
+    /// </summary>
+    /// <param name="magnitude">The strength of the force. If negative, the object pitches down</param>
+    /// <returns></returns>
     public void ApplyPitchTorque(float magnitude = 1f)
     {
         magnitude = Mathf.Clamp(magnitude, -_steeringLimits.x, _steeringLimits.x);
         _rigidBody.AddRelativeTorque(Vector3.right * magnitude, ForceMode.VelocityChange);
     }
 
+    /// <summary>
+    /// Applies a force to the object making it rotate along the Y axis
+    /// </summary>
+    /// <param name="magnitude">The strength of the force. If negative, the object steers left</param>
+    /// <returns></returns>
     public void ApplyYawTorque(float magnitude = 1f)
     {
         magnitude = Mathf.Clamp(magnitude, -_steeringLimits.y, _steeringLimits.y);

@@ -1,28 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaneInput : MonoBehaviour
 {
+    [SerializeField]
     private FlightPhysics _flightPhysics;
 
     void Start()
     {
         _flightPhysics = gameObject.GetComponent<FlightPhysics>();
     }
-    
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButton("Accelerate"))
         {
-            _flightPhysics.AddThrottle(.2f * Time.deltaTime);
+            _flightPhysics.AddThrottle(Input.GetAxis("Accelerate") * .2f * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _flightPhysics.AddThrottle(-.2f * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetButton("Take Off"))
         {
             _flightPhysics.SetFlapRad(5f * Mathf.Deg2Rad);
         }
@@ -31,29 +25,17 @@ public class PlaneInput : MonoBehaviour
             _flightPhysics.SetFlapRad();
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetButton("Vertical"))
         {
-            _flightPhysics.ApplyPitchTorque(-1);
+            _flightPhysics.ApplyPitchTorque(Input.GetAxis("Vertical"));
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetButton("Horizontal"))
         {
-            _flightPhysics.ApplyPitchTorque(1);
+            _flightPhysics.ApplyYawTorque(Input.GetAxis("Horizontal"));
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetButton("Roll"))
         {
-            _flightPhysics.ApplyYawTorque(-1);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            _flightPhysics.ApplyYawTorque(1);
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            _flightPhysics.ApplyRollTorque(1);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            _flightPhysics.ApplyRollTorque(-1);
+            _flightPhysics.ApplyRollTorque(Input.GetAxis("Roll"));
         }
     }
 }
