@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 1128738500}
   - component: {fileID: 1128738499}
   - component: {fileID: 1128738498}
+  - component: {fileID: 1128738501}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Untagged
@@ -367,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxEnginePower: 3000
-  _throttle: 1
+  _throttle: 0
   _wingPower: 1.5
   _rudderPower: 1.5
   _inducedDragFactor: 0.5
@@ -465,6 +466,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _steeringLimits: {x: 0.003, y: 0.003, z: 0.01}
 --- !u!54 &1128738499
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -510,6 +512,19 @@ Transform:
   - {fileID: 1912261062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.262, y: 0, z: -1.337}
+--- !u!114 &1128738501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128738497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb22bc63b18569412be18ea29a42b3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flightPhysics: {fileID: 1128738498}
 --- !u!1 &1629458116
 GameObject:
   m_ObjectHideFlags: 0
