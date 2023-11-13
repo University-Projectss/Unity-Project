@@ -10,7 +10,9 @@ public class Shooting : MonoBehaviour
     
     public void Shoot()
     {
-        Instantiate(projectile, _firingPoint, false);
+        var bullet = Instantiate(projectile, _firingPoint, false);
+        bullet.transform.parent = null;
+        bullet.speed += transform.GetComponent<Rigidbody>().velocity.magnitude;
     }
 
     public void Update()

@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed;
+    public float speed;
 
     private void Update()
     {
-        transform.position += _speed * Time.deltaTime * transform.up;
+        transform.position += speed * Time.deltaTime * transform.up;
     }
 
 }
