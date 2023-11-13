@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 1128738498}
   - component: {fileID: 1128738501}
   - component: {fileID: 1128738502}
+  - component: {fileID: 1128738503}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Untagged
@@ -369,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxEnginePower: 3000
-  _throttle: 1
+  _throttle: 0
   _wingPower: 1.5
   _rudderPower: 1.5
   _inducedDragFactor: 0.5
@@ -511,6 +512,7 @@ Transform:
   - {fileID: 496213146}
   - {fileID: 1629458117}
   - {fileID: 1912261062}
+  - {fileID: 1885875533}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.262, y: 0, z: -1.337}
 --- !u!114 &1128738501
@@ -605,6 +607,21 @@ MonoBehaviour:
   m_DefaultActionMap: Plane
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1128738503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128738497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d143751f82ad724ca1887808aa83baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firingPoint: {fileID: 1885875533}
+  projectile: {fileID: 4562130652556860958, guid: 097aebf48bb5cbc44be8bf5398187259,
+    type: 3}
 --- !u!1 &1629458116
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +729,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629458116}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1885875532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885875533}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1885875533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885875532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1128738500}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1912261061
 GameObject:
   m_ObjectHideFlags: 0
