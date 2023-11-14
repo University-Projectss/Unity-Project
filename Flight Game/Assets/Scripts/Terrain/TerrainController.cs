@@ -158,7 +158,7 @@ public class TerrainController : MonoBehaviour {
     private Vector2 NoiseOffset(int xIndex, int yIndex) {
         Vector2 noiseOffset = new Vector2(
             (xIndex * noiseScale + startOffset.x) % noiseRange.x,
-            (yIndex * noiseScale + startOffset.y)
+            (yIndex * noiseScale + startOffset.y) % noiseRange.y
         );
         //account for negatives (ex. -1 % 256 = -1, needs to loop around to 255)
         if (noiseOffset.x < 0)

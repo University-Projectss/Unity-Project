@@ -67,8 +67,8 @@ public class GenerateMesh : MonoBehaviour {
                 float height10 = GetHeight(x + 1, z + 0, xSegments, zSegments, noiseOffset, noiseScale);
                 float height11 = GetHeight(x + 1, z + 1, xSegments, zSegments, noiseOffset, noiseScale);
 
-                Vector3 vertex00 = new Vector3((x + 0) * xStep, height00 * terrainSize.y*90, (z + 0) * zStep);
-                Vector3 vertex01 = new Vector3((x + 0) * xStep, height01 * terrainSize.y*90, (z + 1) * zStep);
+                Vector3 vertex00 = new Vector3((x + 0) * xStep, height00 * terrainSize.y * 90, (z + 0) * zStep);
+                Vector3 vertex01 = new Vector3((x + 0) * xStep, height01 * terrainSize.y * 90, (z + 1) * zStep);
                 Vector3 vertex10 = new Vector3((x + 1) * xStep, height10 * terrainSize.y * 90, (z + 0) * zStep);
                 Vector3 vertex11 = new Vector3((x + 1) * xStep, height11 * terrainSize.y * 90, (z + 1) * zStep);
 
