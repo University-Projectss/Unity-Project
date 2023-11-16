@@ -823,6 +823,7 @@ MonoBehaviour:
     type: 3}
   _objectPool: {fileID: 140919249}
   _fireInterval: 0.1
+  _spreadRadius: 1
 --- !u!1 &1912261061
 GameObject:
   m_ObjectHideFlags: 0
