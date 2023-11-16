@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &140919248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 140919250}
+  - component: {fileID: 140919249}
+  m_Layer: 0
+  m_Name: ProjectilePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &140919249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140919248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09a71ec5a45f304b8b0d0bb3cfe5d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _object: {fileID: 1823358977874895482, guid: 8e64bf863f1e9b141bdbecc84d6b3590, type: 3}
+  poolSize: 20
+--- !u!4 &140919250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140919248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.9901, y: 0.37889117, z: -468.15128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &496213145
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +395,6 @@ GameObject:
   - component: {fileID: 1128738498}
   - component: {fileID: 1128738501}
   - component: {fileID: 1128738502}
-  - component: {fileID: 1128738503}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Untagged
@@ -504,7 +549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128738497}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0022862079, y: -0.00002667572, z: -0.011667283, w: 0.99992937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8, y: 0.79, z: -473.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -514,7 +559,7 @@ Transform:
   - {fileID: 1912261062}
   - {fileID: 1885875533}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -0.262, y: 0, z: -1.337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1128738501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,26 +647,27 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9eaa8468-8b7b-4dba-ba05-6db9979bd558
     m_ActionName: Plane/TakeOffControl[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1128738497}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8349f6b6-11c3-477e-a7e6-97b392ffff14
+    m_ActionName: Plane/Fire[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Plane
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1128738503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128738497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d143751f82ad724ca1887808aa83baa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _firingPoint: {fileID: 1885875533}
-  projectile: {fileID: 4562130652556860958, guid: 097aebf48bb5cbc44be8bf5398187259,
-    type: 3}
 --- !u!1 &1629458116
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1885875533}
+  - component: {fileID: 1885875534}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -754,12 +801,28 @@ Transform:
   m_GameObject: {fileID: 1885875532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.5}
+  m_LocalPosition: {x: 0, y: -0.008, z: 6.265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1128738500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1885875534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885875532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d143751f82ad724ca1887808aa83baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectile: {fileID: 7305958323559974065, guid: 8e64bf863f1e9b141bdbecc84d6b3590,
+    type: 3}
+  _objectPool: {fileID: 140919249}
+  _fireInterval: 0.1
 --- !u!1 &1912261061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,3 +1098,4 @@ SceneRoots:
   - {fileID: 1957349205}
   - {fileID: 983445669}
   - {fileID: 1128738500}
+  - {fileID: 140919250}

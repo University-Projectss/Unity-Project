@@ -12,22 +12,14 @@ public class PlaneInput : MonoBehaviour
 
     private float _thrust;
 
-    public void ProcessFlight(InputAction.CallbackContext callbackContext)
-    {
+    public void ProcessFlight(InputAction.CallbackContext callbackContext) =>
         _flightVec = callbackContext.ReadValue<Vector3>();
-    }
-    public void ProcessTakeOff(InputAction.CallbackContext callbackContext)
-    {
+    public void ProcessTakeOff(InputAction.CallbackContext callbackContext) =>
         _lift = callbackContext.ReadValue<float>() * 5f * Mathf.Deg2Rad;
-    }
-    public void ProcessThrust(InputAction.CallbackContext callbackContext)
-    {
+    public void ProcessThrust(InputAction.CallbackContext callbackContext) =>
         _thrust = callbackContext.ReadValue<float>() * .2f * Time.deltaTime;
-    }
-    void Start()
-    {
+    void Start() =>
         _flightPhysics = gameObject.GetComponent<FlightPhysics>();
-    }
 
     void Update()
     {
