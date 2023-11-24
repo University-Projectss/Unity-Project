@@ -274,12 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5b6084b77522e42898e1a4f0e34511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainTilePrefab: {fileID: 6859812779644435666, guid: e80e69f02bf494c43bd88395d107051a,
+  _terrainTilePrefab: {fileID: 6859812779644435666, guid: e80e69f02bf494c43bd88395d107051a,
     type: 3}
-  terrainSize: {x: 20, y: 1, z: 20}
-  gradient:
+  _terrainSize: {x: 20, y: 1, z: 20}
+  _gradient:
     serializedVersion: 2
-    key0: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+    key0: {r: 0, g: 0, b: 0, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -307,17 +307,17 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  noiseScale: 30
-  cellSize: 1
-  radiusToRender: 10
-  gameTransforms:
+  _noiseScale: 30
+  _cellSize: 1
+  _radiusToRender: 5
+  _gameTransforms:
   - {fileID: 1720410018}
-  playerTransform: {fileID: 1720410018}
-  water: {fileID: 1285763103}
-  seed: 0
-  destroyDistance: 1000
-  usePerlinNoise: 0
-  noise: {fileID: 2800000, guid: d0dd130114a53124fa53258c7d63ce9d, type: 3}
+  _playerTransform: {fileID: 383199070}
+  _water: {fileID: 1285763103}
+  _seed: 0
+  _destroyDistance: 1000
+  _usePerlinNoise: 0
+  _noise: {fileID: 2800000, guid: 5e0bfe02b6442f34caeb6fe1d01ae085, type: 3}
 --- !u!1 &383199066
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 1285763101}
   - component: {fileID: 1285763100}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: WaterPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,41 +4,56 @@ using UnityEngine;
 using ProceduralToolkit;
 
 [RequireComponent(typeof(MeshFilter))]
-public class GenerateMesh : MonoBehaviour {
+public class GenerateMesh : MonoBehaviour
+{
 
-    private MeshFilter meshFilter;
+    private MeshFilter _meshFilter;
 
-    public Vector3 TerrainSize { get; set; }
-    public float CellSize { get; set; }
-    public float NoiseScale { get; set; }
+    [Header("Terrain Settings")]
+    [Tooltip("The size of the terrain in the X, Y, and Z dimensions.")]
+    public Vector3 TerrainSize;
 
-    public Gradient Gradient { get; set; }
+    [Tooltip("The size of each terrain cell.")]
+    public float CellSize;
 
-    public Vector2 NoiseOffset { get; set; }
+    [Tooltip("The scale of the noise applied to the terrain.")]
+    public float NoiseScale;
 
-    private static bool usePerlinNoise = true;
-    public static bool UsePerlinNoise { get { return usePerlinNoise; } set { usePerlinNoise = value; } }
+    [Tooltip("The gradient used to color the terrain based on height.")]
+    public Gradient Gradient;
 
-    public void Generate() {
-        meshFilter = GetComponent<MeshFilter>();
+    [Tooltip("The offset used to generate different noise patterns.")]
+    public Vector2 NoiseOffset;
+
+    private static bool _usePerlinNoise = true;
+
+    [Tooltip("Toggle to use Perlin noise. If false, use pre-generated noise from TerrainController.")]
+    public static bool UsePerlinNoise { get { return _usePerlinNoise; } set { _usePerlinNoise = value; } }
+
+    [ContextMenu("Generate Terrain")]
+    public void Generate()
+    {
+        _meshFilter = GetComponent<MeshFilter>();
 
         MeshDraft draft = TerrainDraft(TerrainSize, CellSize, NoiseOffset, NoiseScale, Gradient);
         draft.Move(Vector3.left * TerrainSize.x / 2 + Vector3.back * TerrainSize.z / 2);
-        meshFilter.mesh = draft.ToMesh();
+        _meshFilter.mesh = draft.ToMesh();
 
         MeshCollider meshCollider = GetComponent<MeshCollider>();
         if (meshCollider)
-            meshCollider.sharedMesh = meshFilter.mesh;
+            meshCollider.sharedMesh = _meshFilter.mesh;
     }
 
-    private static MeshDraft TerrainDraft(Vector3 terrainSize, float cellSize, Vector2 noiseOffset, float noiseScale, Gradient gradient) {
+    private static MeshDraft TerrainDraft(Vector3 terrainSize, float cellSize, Vector2 noiseOffset, float noiseScale, Gradient gradient)
+    {
         int xSegments = Mathf.FloorToInt(terrainSize.x / cellSize);
         int zSegments = Mathf.FloorToInt(terrainSize.z / cellSize);
 
         float xStep = terrainSize.x / xSegments;
         float zStep = terrainSize.z / zSegments;
         int vertexCount = 6 * xSegments * zSegments;
-        MeshDraft draft = new MeshDraft {
+        MeshDraft draft = new MeshDraft
+        {
             name = "Terrain",
             vertices = new List<Vector3>(vertexCount),
             triangles = new List<int>(vertexCount),
@@ -46,15 +61,18 @@ public class GenerateMesh : MonoBehaviour {
             colors = new List<Color>(vertexCount)
         };
 
-        for (int i = 0; i < vertexCount; i++) {
+        for (int i = 0; i < vertexCount; i++)
+        {
             draft.vertices.Add(Vector3.zero);
             draft.triangles.Add(0);
             draft.normals.Add(Vector3.zero);
             draft.colors.Add(Color.black);
         }
 
-        for (int x = 0; x < xSegments; x++) {
-            for (int z = 0; z < zSegments; z++) {
+        for (int x = 0; x < xSegments; x++)
+        {
+            for (int z = 0; z < zSegments; z++)
+            {
                 int index0 = 6 * (x + z * xSegments);
                 int index1 = index0 + 1;
                 int index2 = index0 + 2;
@@ -108,13 +126,13 @@ public class GenerateMesh : MonoBehaviour {
         return draft;
     }
 
-    private static float GetHeight(int x, int z, int xSegments, int zSegments, Vector2 noiseOffset, float noiseScale) {
+    private static float GetHeight(int x, int z, int xSegments, int zSegments, Vector2 noiseOffset, float noiseScale)
+    {
         float noiseX = noiseScale * x / xSegments + noiseOffset.x;
         float noiseZ = noiseScale * z / zSegments + noiseOffset.y;
-        if (usePerlinNoise)
+        if (_usePerlinNoise)
             return Mathf.PerlinNoise(noiseX, noiseZ);
         else
             return TerrainController.noisePixels[(int)noiseX % TerrainController.noisePixels.Length][(int)noiseZ % TerrainController.noisePixels[0].Length];
     }
-
 }
