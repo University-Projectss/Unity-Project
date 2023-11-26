@@ -51,8 +51,8 @@ public class GenerateMesh : MonoBehaviour
         int xSegments = Mathf.FloorToInt(terrainSize.x / cellSize);
         int zSegments = Mathf.FloorToInt(terrainSize.z / cellSize);
 
-        float xStep = terrainSize.x / xSegments;
-        float zStep = terrainSize.z / zSegments;
+        float xStep = cellSize;
+        float zStep = cellSize;
         int vertexCount = 6 * xSegments * zSegments;
         MeshDraft draft = new MeshDraft
         {
