@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.syomus.proceduraltoolkit": {
+      "version": "https://github.com/Syomus/ProceduralToolkit.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.mathematics": "1.2.6"
+      },
+      "hash": "722f22ac2dbe72f83715d7f22d615cd697463650"
+    },
     "com.unity.burst": {
       "version": "1.8.8",
       "depth": 1,

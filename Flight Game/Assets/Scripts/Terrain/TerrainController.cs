@@ -8,11 +8,15 @@ public class TerrainController : MonoBehaviour {
     [Tooltip("Prefab for the terrain tile.")]
     [SerializeField]
     private GameObject _terrainTilePrefab = null;
+
     [SerializeField]
     private Vector3 _terrainSize = new Vector3(20, 1, 20);
+
     public Vector3 TerrainSize { get { return _terrainSize; } }
+
     [SerializeField]
     private Gradient _gradient;
+
     [SerializeField]
     private float _noiseScale = 2, _cellSize = 1;
 
@@ -23,19 +27,27 @@ public class TerrainController : MonoBehaviour {
     [Tooltip("Transforms of the game objects to be tracked for terrain loading.")]
     [SerializeField]
     private Transform[] _gameTransforms;
+
     [SerializeField]
     private Transform _playerTransform;
+
     [SerializeField]
     private Transform _water;
+
     public Transform Water { get { return _water; } }
+
     [SerializeField]
     private int _seed;
+
     [SerializeField]
     private float _destroyDistance = 1000;
+
     [SerializeField]
     private bool _usePerlinNoise = true;
+
     [SerializeField]
     private Texture2D _noise;
+
     public static float[][] noisePixels;
 
     private Vector2 _startOffset;
@@ -43,16 +55,32 @@ public class TerrainController : MonoBehaviour {
     private Dictionary<Vector2, GameObject> _terrainTiles = new Dictionary<Vector2, GameObject>();
 
     private Vector2[] _previousCenterTiles;
+
     private List<GameObject> _previousTileObjects = new List<GameObject>();
     public Transform Level { get; set; }
+
     private Vector2 _noiseRange;
 
-    private void Awake() {
+    [Tooltip("Multiplier that introduces additional variation to the seed.")]
+    [SerializeField]
+    private int tileRandomizationFactor = 100;
+
+    private void Awake()
+    {
+        // Check if a noise texture is provided
         if (_noise)
             noisePixels = GetGrayScalePixels(_noise);
+
+        // Set the UsePerlinNoise flag in GenerateMesh script
         GenerateMesh.UsePerlinNoise = _usePerlinNoise;
+
+        // Determine the size of the noise texture
+        // If using Perlin noise, set the range to (256, 256)
+        // Otherwise, use the dimensions of the loaded noise texture
         _noiseRange = _usePerlinNoise ? Vector2.one * 256 : new Vector2(noisePixels.Length, noisePixels[0].Length);
+        // noisePixels.Length represents the height of the noise texture, and noisePixels[0].Length represents the width.
     }
+
 
     private void Start() {
         InitialLoad();
@@ -71,39 +99,44 @@ public class TerrainController : MonoBehaviour {
         _water.localScale = new Vector3(_terrainSize.x / 10 * waterSideLength, 1, _terrainSize.z / 10 * waterSideLength);
 
         Random.InitState(_seed);
-        //choose a random place on perlin noise
+
+        // Choose a random place on perlin noise
         _startOffset = new Vector2(Random.Range(0f, _noiseRange.x), Random.Range(0f, _noiseRange.y));
         RandomizeInitState();
     }
 
     private void Update() {
-        //save the tile the player is on
+        // Save the tile the player is on
         Vector2 playerTile = TileFromPosition(_playerTransform.localPosition);
-        //save the tiles of all tracked objects in gameTransforms (including the player)
+
+        // Save the tiles of all tracked objects in gameTransforms (including the player)
         List<Vector2> centerTiles = new List<Vector2>();
         centerTiles.Add(playerTile);
         foreach (Transform t in _gameTransforms)
             centerTiles.Add(TileFromPosition(t.localPosition));
 
-        //if no tiles exist yet or tiles should change
+        // If no tiles exist yet or tiles should change
         if (_previousCenterTiles == null || HaveTilesChanged(centerTiles)) {
             List<GameObject> tileObjects = new List<GameObject>();
-            //activate new tiles
+
+            // Activate new tiles
             foreach (Vector2 tile in centerTiles) {
                 bool isPlayerTile = tile == playerTile;
                 int radius = isPlayerTile ? _radiusToRender : 1;
                 for (int i = -radius; i <= radius; i++)
                     for (int j = -radius; j <= radius; j++)
                         ActivateOrCreateTile((int)tile.x + i, (int)tile.y + j, tileObjects);
+
                 if (isPlayerTile)
                     _water.localPosition = new Vector3(tile.x * _terrainSize.x, _water.localPosition.y, tile.y * _terrainSize.z);
             }
-            //deactivate old tiles
+
+            // Deactivate old tiles
             foreach (GameObject g in _previousTileObjects)
                 if (!tileObjects.Contains(g))
                     g.SetActive(false);
 
-            //destroy inactive tiles if they're too far away
+            // Destroy inactive tiles if they're too far away
             List<Vector2> keysToRemove = new List<Vector2>();//can't remove item when inside a foreach loop
             foreach (KeyValuePair<Vector2, GameObject> kv in _terrainTiles) {
                 if (Vector3.Distance(_playerTransform.position, kv.Value.transform.position) > _destroyDistance && !kv.Value.activeSelf) {
@@ -111,6 +144,7 @@ public class TerrainController : MonoBehaviour {
                     Destroy(kv.Value);
                 }
             }
+
             foreach (Vector2 key in keysToRemove)
                 _terrainTiles.Remove(key);
 
@@ -125,7 +159,8 @@ public class TerrainController : MonoBehaviour {
     private void ActivateOrCreateTile(int xIndex, int yIndex, List<GameObject> tileObjects) {
         if (!_terrainTiles.ContainsKey(new Vector2(xIndex, yIndex))) {
             tileObjects.Add(CreateTile(xIndex, yIndex));
-        } else {
+        } 
+        else {
             GameObject t = _terrainTiles[new Vector2(xIndex, yIndex)];
             tileObjects.Add(t);
             if (!t.activeSelf)
@@ -140,7 +175,8 @@ public class TerrainController : MonoBehaviour {
             Quaternion.identity,
             Level
         );
-        //had to move outside of instantiate because it's a local position
+
+        // Had to move outside of instantiate because it's a local position
         terrain.transform.localPosition = new Vector3(_terrainSize.x * xIndex, _terrainSize.y, _terrainSize.z * yIndex);
         terrain.name = TrimEnd(terrain.name, "(Clone)") + " [" + xIndex + " , " + yIndex + "]";
 
@@ -154,7 +190,7 @@ public class TerrainController : MonoBehaviour {
         gm.NoiseOffset = NoiseOffset(xIndex, yIndex);
         gm.Generate();
 
-        Random.InitState((int)(_seed + (long)xIndex * 100 + yIndex));//so it doesn't form a (noticable) pattern of similar tiles
+        Random.InitState((int)(_seed + (long)xIndex * tileRandomizationFactor + yIndex)); // so it doesn't form a (noticeable) pattern of similar tiles
         RandomizeInitState();
 
         return terrain;
@@ -165,11 +201,13 @@ public class TerrainController : MonoBehaviour {
             (xIndex * _noiseScale + _startOffset.x) % _noiseRange.x,
             (yIndex * _noiseScale + _startOffset.y) % _noiseRange.y
         );
-        //account for negatives (ex. -1 % 256 = -1, needs to loop around to 255)
+
+        // Account for negatives (ex. -1 % 256 = -1, needs to loop around to 255)
         if (noiseOffset.x < 0)
             noiseOffset = new Vector2(noiseOffset.x + _noiseRange.x, noiseOffset.y);
         if (noiseOffset.y < 0)
             noiseOffset = new Vector2(noiseOffset.x, noiseOffset.y + _noiseRange.y);
+
         return noiseOffset;
     }
 
@@ -178,23 +216,27 @@ public class TerrainController : MonoBehaviour {
     }
 
     private void RandomizeInitState() {
-        Random.InitState((int)System.DateTime.UtcNow.Ticks);//casting a long to an int "loops" it (like modulo)
+        Random.InitState((int)System.DateTime.UtcNow.Ticks); // Casting a long to an int "loops" it (like modulo)
     }
 
     private bool HaveTilesChanged(List<Vector2> centerTiles) {
         if (_previousCenterTiles.Length != centerTiles.Count)
             return true;
+
         for (int i = 0; i < _previousCenterTiles.Length; i++)
             if (_previousCenterTiles[i] != centerTiles[i])
                 return true;
+
         return false;
     }
 
     public void DestroyTerrain() {
         _water.parent = null;
         _playerTransform.parent = null;
+
         foreach (Transform t in _gameTransforms)
             t.parent = Level;
+
         Destroy(Level);
         _terrainTiles.Clear();
     }
@@ -202,6 +244,7 @@ public class TerrainController : MonoBehaviour {
     private static string TrimEnd(string str, string end) {
         if (str.EndsWith(end))
             return str.Substring(0, str.LastIndexOf(end));
+
         return str;
     }
 

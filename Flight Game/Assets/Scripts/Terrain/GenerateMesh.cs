@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using ProceduralToolkit;
 
 [RequireComponent(typeof(MeshFilter))]
 public class GenerateMesh : MonoBehaviour
 {
-
     private MeshFilter _meshFilter;
 
     [Header("Terrain Settings")]
@@ -30,11 +28,15 @@ public class GenerateMesh : MonoBehaviour
     [Tooltip("Toggle to use Perlin noise. If false, use pre-generated noise from TerrainController.")]
     public static bool UsePerlinNoise { get { return _usePerlinNoise; } set { _usePerlinNoise = value; } }
 
+    [Tooltip("Parameter that decides how much the height scales with the noise.")]
+    [SerializeField]
+    public static int HeightScale = 90;
+
     [ContextMenu("Generate Terrain")]
     public void Generate()
     {
         _meshFilter = GetComponent<MeshFilter>();
-
+        
         MeshDraft draft = TerrainDraft(TerrainSize, CellSize, NoiseOffset, NoiseScale, Gradient);
         draft.Move(Vector3.left * TerrainSize.x / 2 + Vector3.back * TerrainSize.z / 2);
         _meshFilter.mesh = draft.ToMesh();
@@ -61,6 +63,7 @@ public class GenerateMesh : MonoBehaviour
             colors = new List<Color>(vertexCount)
         };
 
+        // Initialize vertex, triangle, normal, and color lists
         for (int i = 0; i < vertexCount; i++)
         {
             draft.vertices.Add(Vector3.zero);
@@ -69,10 +72,12 @@ public class GenerateMesh : MonoBehaviour
             draft.colors.Add(Color.black);
         }
 
+        // Loop through each terrain cell
         for (int x = 0; x < xSegments; x++)
         {
             for (int z = 0; z < zSegments; z++)
             {
+                // Calculate the indices for the six vertices of the terrain cell
                 int index0 = 6 * (x + z * xSegments);
                 int index1 = index0 + 1;
                 int index2 = index0 + 2;
@@ -80,15 +85,24 @@ public class GenerateMesh : MonoBehaviour
                 int index4 = index0 + 4;
                 int index5 = index0 + 5;
 
+                // Calculate the heights of the four corners of the terrain cell
                 float height00 = GetHeight(x + 0, z + 0, xSegments, zSegments, noiseOffset, noiseScale);
                 float height01 = GetHeight(x + 0, z + 1, xSegments, zSegments, noiseOffset, noiseScale);
                 float height10 = GetHeight(x + 1, z + 0, xSegments, zSegments, noiseOffset, noiseScale);
                 float height11 = GetHeight(x + 1, z + 1, xSegments, zSegments, noiseOffset, noiseScale);
 
-                Vector3 vertex00 = new Vector3((x + 0) * xStep, height00 * terrainSize.y * 90, (z + 0) * zStep);
-                Vector3 vertex01 = new Vector3((x + 0) * xStep, height01 * terrainSize.y * 90, (z + 1) * zStep);
-                Vector3 vertex10 = new Vector3((x + 1) * xStep, height10 * terrainSize.y * 90, (z + 0) * zStep);
-                Vector3 vertex11 = new Vector3((x + 1) * xStep, height11 * terrainSize.y * 90, (z + 1) * zStep);
+                // Calculate the world-space positions of the four corners
+                Vector3 vertex00 = new Vector3((x + 0) * xStep, height00 * terrainSize.y * HeightScale, (z + 0) * zStep);
+                Vector3 vertex01 = new Vector3((x + 0) * xStep, height01 * terrainSize.y * HeightScale, (z + 1) * zStep);
+                Vector3 vertex10 = new Vector3((x + 1) * xStep, height10 * terrainSize.y * HeightScale, (z + 0) * zStep);
+                Vector3 vertex11 = new Vector3((x + 1) * xStep, height11 * terrainSize.y * HeightScale, (z + 1) * zStep);
+                
+                // Assign vertices and colors to the draft
+
+                // - vertex00 is the bottom-left corner of the terrain cell.
+                // - vertex01 is the top-left corner of the terrain cell.
+                // - vertex11 is the top-right corner of the terrain cell.
+                // - vertex10 is the bottom-right corner of the terrain cell.
 
                 draft.vertices[index0] = vertex00;
                 draft.vertices[index1] = vertex01;
@@ -104,9 +118,15 @@ public class GenerateMesh : MonoBehaviour
                 draft.colors[index4] = gradient.Evaluate(height11);
                 draft.colors[index5] = gradient.Evaluate(height10);
 
+                // Calculate normals for the two triangles of the terrain cell
+
+                // - normal000111 represents the upward direction perpendicular to the surface of the first triangle.
+                // - normal001011 represents the upward direction perpendicular to the surface of the second triangle.
+
                 Vector3 normal000111 = Vector3.Cross(vertex01 - vertex00, vertex11 - vertex00).normalized;
                 Vector3 normal001011 = Vector3.Cross(vertex11 - vertex00, vertex10 - vertex00).normalized;
 
+                // Assign normals to the draft
                 draft.normals[index0] = normal000111;
                 draft.normals[index1] = normal000111;
                 draft.normals[index2] = normal000111;
@@ -114,6 +134,7 @@ public class GenerateMesh : MonoBehaviour
                 draft.normals[index4] = normal001011;
                 draft.normals[index5] = normal001011;
 
+                // Assign triangles to the draft
                 draft.triangles[index0] = index0;
                 draft.triangles[index1] = index1;
                 draft.triangles[index2] = index2;
@@ -130,6 +151,7 @@ public class GenerateMesh : MonoBehaviour
     {
         float noiseX = noiseScale * x / xSegments + noiseOffset.x;
         float noiseZ = noiseScale * z / zSegments + noiseOffset.y;
+
         if (_usePerlinNoise)
             return Mathf.PerlinNoise(noiseX, noiseZ);
         else
