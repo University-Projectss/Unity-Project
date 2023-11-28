@@ -17,7 +17,7 @@ Responsive steering for precise maneuverability.
 ### Pitch Control:
 
 * Altering the aircraft's longitudinal attitude.
-* **W** (nose up), **S** (nose down)
+* **S** (nose up), **W** (nose down)
   
 ### Yaw Control:
 
