@@ -1,10 +1,32 @@
 # About
-The player controls a plane in 3rd person view. The plane has the following functionalities: free flight and shooting. The plane can crash and explode if it comes into contact with objects too strongly. The plane fires bullets in the direction of movement.
+The game is a third-person flight simulator set in an unbounded 3D arena with procedurally generated natural landscapes. The objective is to survive as long as possible by navigating obstacles and collecting time-extending power-ups. The countdown timer depletes continuously, and the game ends when it reaches zero or when the airplane crashes.
+## Game Mechanics
+**Time Extension:** Collect glowing spheres to add seconds to the timer.
 
-The game takes place in an unbounded arena (if everything goes well) and the action will be endless wave based. Each wave will increase in difficulty and the waves will contain various challenges:
+**Target Shooting:** Shoot bullets into static targets for additional time.
+## Aircraft Controls
+Acceleration **(Space)** and Deceleration **(Shift)** for variable speed.
 
-- the main type of wave is survival/elimination, in which various enemies will spawn in the arena (other planes, maybe also ground troops); the main goal will be either the elimination of all enemies or survival for a period of time
-- there may be other types (TBD), such as flying through obstacles
+Responsive steering for precise maneuverability.
+
+### Roll Control:
+
+* Adjusting the aircraft's lateral inclination.
+* **Q** (left wing lift), **E** (right wing lift)
+  
+### Pitch Control:
+
+* Altering the aircraft's longitudinal attitude.
+* **S** (nose up), **W** (nose down)
+  
+### Yaw Control:
+
+* Rotating the aircraft around its vertical axis.
+* **A** (nose left), **D** (nose right)
+## Obstacle Avoidance & Scoring System
+Navigate through obstacles using responsive controls to avoid collisions.
+
+Score is based on survival duration.
 
 # Review
 For reviews, please open [GitHub issues](https://github.com/rob3rtu/Unity-Project/issues) with `Review Tempate`.
