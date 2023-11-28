@@ -14,5 +14,4 @@ For reviews, please open [GitHub issues](https://github.com/rob3rtu/Unity-Projec
  - [Adela Corbeanu](https://github.com/AdelaCorbeanu)
  - [Irina Enescu](https://github.com/irinaenescu2002)
  - [Diaconu Stefan](https://github.com/Qmpzlawasd)
- - [Andrei Tava](https://github.com/widdrr)
  - [Robert Udrea](https://github.com/rob3rtu)
