@@ -4,30 +4,30 @@ using TMPro;
 public class CountdownTimer : MonoBehaviour
 {
     [SerializeField] 
-    TextMeshProUGUI timerText;
+    private TextMeshProUGUI _timerText;
 
     [SerializeField]
-    float remainingTime;
+    private float _remainingTime;
 
     void Update()
     {
-        if (remainingTime > 0)
+        if (_remainingTime > 0)
         {
-            remainingTime -= Time.deltaTime;
+            _remainingTime -= Time.deltaTime;
         }
-        else if (remainingTime < 0)
+        else if (_remainingTime < 0)
         {
-            remainingTime = 0;
-            timerText.color = Color.red;
+            _remainingTime = 0;
+            _timerText.color = Color.red;
         }
         
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        int minutes = Mathf.FloorToInt(_remainingTime / 60);
+        int seconds = Mathf.FloorToInt(_remainingTime % 60);
+        _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void AddTime(float seconds)
     {
-        remainingTime += seconds;
+        _remainingTime += seconds;
     }
 }
