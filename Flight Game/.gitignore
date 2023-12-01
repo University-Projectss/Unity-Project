@@ -72,4 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # TextMesh Pro
-/TextMeshPro
+/[Aa]ssets/[Tt]extMesh*Pro
