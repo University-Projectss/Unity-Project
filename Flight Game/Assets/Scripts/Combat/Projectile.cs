@@ -6,12 +6,11 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float _baseSpeed;
     public float BaseSpeed { get { return _baseSpeed; } }
-
-    public float speed;
+    public float Speed { get; set; }
 
     private void Update()
     {
-        transform.position += speed * Time.deltaTime * transform.forward;
+        transform.position += Speed * Time.deltaTime * transform.forward;
     }
 
     private void OnTriggerEnter(Collider other)

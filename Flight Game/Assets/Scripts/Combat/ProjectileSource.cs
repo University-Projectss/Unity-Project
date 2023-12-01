@@ -46,7 +46,7 @@ public class ProjectileSource : MonoBehaviour
                          Random.Range(-_spreadRadius, _spreadRadius) * transform.up;
         bullet.transform.SetPositionAndRotation(transform.position + spread, transform.rotation);
 
-        bullet.speed = bullet.BaseSpeed + transform.GetComponentInParent<Rigidbody>().velocity.magnitude;
+        bullet.Speed = bullet.BaseSpeed + transform.GetComponentInParent<Rigidbody>().velocity.magnitude;
         StartCoroutine(bullet.DestroyAfter(5));
     }
 
