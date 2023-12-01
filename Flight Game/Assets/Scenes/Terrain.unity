@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 383199069}
   - component: {fileID: 383199068}
   - component: {fileID: 383199067}
+  - component: {fileID: 383199071}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Untagged
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxEnginePower: 1000
   _throttle: 1
-  _wingPower: 3
+  _wingPower: 5
   _rudderPower: 3
   _inducedDragFactor: 1
   _angularDragCoefficients: {x: 2, y: 2, z: 2}
@@ -462,7 +463,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _steeringLimits: {x: 0.01, y: 0.01, z: 0.06}
+  _steeringLimits: {x: 0.03, y: 0.01, z: 0.06}
 --- !u!54 &383199069
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -508,6 +509,89 @@ Transform:
   - {fileID: 1617777501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.262, y: 0, z: -1.337}
+--- !u!114 &383199071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383199066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4a02c89ad4b5432549766ad8c2b448f2,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383199067}
+        m_TargetAssemblyTypeName: PlaneInput, Assembly-CSharp
+        m_MethodName: ProcessFlight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5bf3975f-da96-4335-8fee-c1b583e1f5fc
+    m_ActionName: Plane/FlightControls[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/q,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383199067}
+        m_TargetAssemblyTypeName: PlaneInput, Assembly-CSharp
+        m_MethodName: ProcessThrust
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+            m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9fbf1094-f1c5-439b-b66c-958da63d6e61
+    m_ActionName: Plane/ThrustControl[/Keyboard/leftShift,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 383199067}
+        m_TargetAssemblyTypeName: PlaneInput, Assembly-CSharp
+        m_MethodName: ProcessTakeOff
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9eaa8468-8b7b-4dba-ba05-6db9979bd558
+    m_ActionName: Plane/TakeOffControl[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8349f6b6-11c3-477e-a7e6-97b392ffff14
+    m_ActionName: Plane/Fire[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Plane
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &610971119
 GameObject:
   m_ObjectHideFlags: 0
