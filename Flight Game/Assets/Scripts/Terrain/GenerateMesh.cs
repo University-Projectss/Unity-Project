@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using ProceduralToolkit;
+using Unity.Mathematics;
+using System.Runtime.CompilerServices;
 
 [RequireComponent(typeof(MeshFilter))]
 public class GenerateMesh : MonoBehaviour
@@ -91,7 +93,7 @@ public class GenerateMesh : MonoBehaviour
                 float height10 = GetHeight(x + 1, z + 0, xSegments, zSegments, noiseOffset, noiseScale);
                 float height11 = GetHeight(x + 1, z + 1, xSegments, zSegments, noiseOffset, noiseScale);
 
-                // Calculate the world-space positions of the four corners
+                // Calculate the local-space positions of the four corners
                 Vector3 vertex00 = new Vector3((x + 0) * xStep, height00 * terrainSize.y * HeightScale, (z + 0) * zStep);
                 Vector3 vertex01 = new Vector3((x + 0) * xStep, height01 * terrainSize.y * HeightScale, (z + 1) * zStep);
                 Vector3 vertex10 = new Vector3((x + 1) * xStep, height10 * terrainSize.y * HeightScale, (z + 0) * zStep);
@@ -156,5 +158,37 @@ public class GenerateMesh : MonoBehaviour
             return Mathf.PerlinNoise(noiseX, noiseZ);
         else
             return TerrainController.noisePixels[(int)noiseX % TerrainController.noisePixels.Length][(int)noiseZ % TerrainController.noisePixels[0].Length];
+    }
+
+    public float GetTerrainHeightAtPosition(Vector3 worldPosition)
+    {
+
+        // Maximum segments per tile
+        int xSegments = Mathf.FloorToInt(TerrainSize.x / CellSize);
+        int zSegments = Mathf.FloorToInt(TerrainSize.z / CellSize);
+
+        // Convert the world position to local position within the terrain
+        Vector3 localPosition = transform.InverseTransformPoint(worldPosition);
+
+        // Calculate the indices of the terrain cell containing the given position
+        int xIndex = Mathf.FloorToInt(localPosition.x / CellSize) + xSegments / 2;
+        int zIndex = Mathf.FloorToInt(localPosition.z / CellSize) + zSegments / 2;
+
+        // Calculate the heights of the four corners of the terrain cell
+        float height00 = GetHeight(xIndex + 0, zIndex + 0, Mathf.FloorToInt(TerrainSize.x / CellSize), Mathf.FloorToInt(TerrainSize.z / CellSize), NoiseOffset, NoiseScale);
+        float height01 = GetHeight(xIndex + 0, zIndex + 1, Mathf.FloorToInt(TerrainSize.x / CellSize), Mathf.FloorToInt(TerrainSize.z / CellSize), NoiseOffset, NoiseScale);
+        float height10 = GetHeight(xIndex + 1, zIndex + 0, Mathf.FloorToInt(TerrainSize.x / CellSize), Mathf.FloorToInt(TerrainSize.z / CellSize), NoiseOffset, NoiseScale);
+        float height11 = GetHeight(xIndex + 1, zIndex + 1, Mathf.FloorToInt(TerrainSize.x / CellSize), Mathf.FloorToInt(TerrainSize.z / CellSize), NoiseOffset, NoiseScale);
+
+        // Interpolate the height using bilinear interpolation
+        float u = Mathf.InverseLerp(xIndex * CellSize, (xIndex + 1) * CellSize, localPosition.x);
+        float v = Mathf.InverseLerp(zIndex * CellSize, (zIndex + 1) * CellSize, localPosition.z);
+
+        float height = Mathf.Lerp(Mathf.Lerp(height00, height10, u), Mathf.Lerp(height01, height11, u), v);
+
+        // Scale the height with TerrainSize.y and HeightScale
+        height *= TerrainSize.y * HeightScale;
+
+        return height;
     }
 }

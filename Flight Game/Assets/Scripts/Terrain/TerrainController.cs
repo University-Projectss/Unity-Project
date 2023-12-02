@@ -52,7 +52,7 @@ public class TerrainController : MonoBehaviour {
 
     private Vector2 _startOffset;
 
-    private Dictionary<Vector2, GameObject> _terrainTiles = new Dictionary<Vector2, GameObject>();
+    public Dictionary<Vector2, GameObject> terrainTiles = new Dictionary<Vector2, GameObject>();
 
     private Vector2[] _previousCenterTiles;
 
@@ -64,6 +64,8 @@ public class TerrainController : MonoBehaviour {
     [Tooltip("Multiplier that introduces additional variation to the seed.")]
     [SerializeField]
     private int tileRandomizationFactor = 100;
+
+    private static readonly int _terrainLayer = 6;
 
     private void Awake()
     {
@@ -92,6 +94,8 @@ public class TerrainController : MonoBehaviour {
         Level = new GameObject("Level").transform;
         _water.parent = Level;
         _playerTransform.parent = Level;
+
+        Level.gameObject.layer = _terrainLayer;
         foreach (Transform t in _gameTransforms)
             t.parent = Level;
 
@@ -138,7 +142,7 @@ public class TerrainController : MonoBehaviour {
 
             // Destroy inactive tiles if they're too far away
             List<Vector2> keysToRemove = new List<Vector2>();//can't remove item when inside a foreach loop
-            foreach (KeyValuePair<Vector2, GameObject> kv in _terrainTiles) {
+            foreach (KeyValuePair<Vector2, GameObject> kv in terrainTiles) {
                 if (Vector3.Distance(_playerTransform.position, kv.Value.transform.position) > _destroyDistance && !kv.Value.activeSelf) {
                     keysToRemove.Add(kv.Key);
                     Destroy(kv.Value);
@@ -146,7 +150,7 @@ public class TerrainController : MonoBehaviour {
             }
 
             foreach (Vector2 key in keysToRemove)
-                _terrainTiles.Remove(key);
+                terrainTiles.Remove(key);
 
             _previousTileObjects = new List<GameObject>(tileObjects);
         }
@@ -157,11 +161,11 @@ public class TerrainController : MonoBehaviour {
     //Helper methods below
 
     private void ActivateOrCreateTile(int xIndex, int yIndex, List<GameObject> tileObjects) {
-        if (!_terrainTiles.ContainsKey(new Vector2(xIndex, yIndex))) {
+        if (!terrainTiles.ContainsKey(new Vector2(xIndex, yIndex))) {
             tileObjects.Add(CreateTile(xIndex, yIndex));
         } 
         else {
-            GameObject t = _terrainTiles[new Vector2(xIndex, yIndex)];
+            GameObject t = terrainTiles[new Vector2(xIndex, yIndex)];
             tileObjects.Add(t);
             if (!t.activeSelf)
                 t.SetActive(true);
@@ -179,8 +183,9 @@ public class TerrainController : MonoBehaviour {
         // Had to move outside of instantiate because it's a local position
         terrain.transform.localPosition = new Vector3(_terrainSize.x * xIndex, _terrainSize.y, _terrainSize.z * yIndex);
         terrain.name = TrimEnd(terrain.name, "(Clone)") + " [" + xIndex + " , " + yIndex + "]";
+        terrain.layer = _terrainLayer;
 
-        _terrainTiles.Add(new Vector2(xIndex, yIndex), terrain);
+        terrainTiles.Add(new Vector2(xIndex, yIndex), terrain);
 
         GenerateMesh gm = terrain.GetComponent<GenerateMesh>();
         gm.TerrainSize = _terrainSize;
@@ -211,7 +216,7 @@ public class TerrainController : MonoBehaviour {
         return noiseOffset;
     }
 
-    private Vector2 TileFromPosition(Vector3 position) {
+    public Vector2 TileFromPosition(Vector3 position) {
         return new Vector2(Mathf.FloorToInt(position.x / _terrainSize.x + .5f), Mathf.FloorToInt(position.z / _terrainSize.z + .5f));
     }
 
@@ -238,7 +243,7 @@ public class TerrainController : MonoBehaviour {
             t.parent = Level;
 
         Destroy(Level);
-        _terrainTiles.Clear();
+        terrainTiles.Clear();
     }
 
     private static string TrimEnd(string str, string end) {
