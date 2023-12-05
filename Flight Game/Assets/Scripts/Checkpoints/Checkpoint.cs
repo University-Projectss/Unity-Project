@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour
     public float timerGain;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")){
+        if (other.gameObject.CompareTag(Constants.PlayerTag)){
             
             countdownTimer.AddTime(timerGain);
             Vector3 direction = Vector3.ProjectOnPlane(other.attachedRigidbody.velocity, Vector3.down).normalized;
