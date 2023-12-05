@@ -34,6 +34,11 @@ public class CheckpointGenerator : MonoBehaviour
     [SerializeField]
     private LayerMask _terrainLayers;
 
+    [Tooltip("The maximum number of attempts to spawn a checkpoint")]
+    [SerializeField]
+    [Range(1, int.MaxValue)]
+    private int _maxTries = 512;
+
     private float _minHeight;
     private float _maxHeight;
 
@@ -54,9 +59,8 @@ public class CheckpointGenerator : MonoBehaviour
 
         Random.InitState((int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
-        bool valid;
-        Checkpoint checkpoint;
-        do
+        Checkpoint checkpoint = null;
+        for(int tries = 0; tries < _maxTries; tries++) 
         {
             float directionOffset = Random.Range(_minRadius, _maxRadius);
             float lateralOffset = Random.Range(-_lateralRadius, _lateralRadius);
@@ -78,14 +82,13 @@ public class CheckpointGenerator : MonoBehaviour
 
             checkpoint = Instantiate(_checkpoint, potentialPosition, Quaternion.identity);
 
-            valid = PlacementIsValid(checkpoint);
-            if (!valid)
+            if (PlacementIsValid(checkpoint))
             {
                 Destroy(checkpoint);
                 checkpoint.gameObject.SetActive(false);
+                break;
             }
         }
-        while (!valid);
 
         checkpoint.countdownTimer = lastCheckpoint.countdownTimer;
         checkpoint.generator = this;
