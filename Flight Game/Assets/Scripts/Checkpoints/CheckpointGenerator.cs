@@ -46,13 +46,13 @@ public class CheckpointGenerator : MonoBehaviour
 
         _minHeight = _waterLevel.transform.position.y;
         _maxHeight = _minHeight + _heightRadius;
+
+        Random.InitState((int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
     }
 
     public void GenerateCheckpoint(Checkpoint lastCheckpoint, Vector3 direction)
     {
         Vector3 lastCheckpointPosition = lastCheckpoint.transform.position;
-
-        Random.InitState((int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
         Checkpoint checkpoint;
         while (true)

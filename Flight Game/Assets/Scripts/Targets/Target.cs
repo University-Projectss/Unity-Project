@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField]
-    private CountdownTimer _countdownTimer;
+    public CountdownTimer countdownTimer;
+    
     [SerializeField]
     private Material _material;
     [SerializeField]
@@ -33,9 +33,9 @@ public class Target : MonoBehaviour
                                                 _instanceMaterial.color.b,
                                                 _instanceMaterial.color.a - 1/_hits);
 
-            if(_hitsLeft == 0)
+            if(_hitsLeft <= 0)
             {
-            _countdownTimer.AddTime(_timerGain);
+            countdownTimer.AddTime(_timerGain);
             Destroy(gameObject);
 
             //Destroy only happens after the current Update Loop
