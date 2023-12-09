@@ -34,9 +34,6 @@ public class CheckpointGenerator : MonoBehaviour
     [SerializeField]
     private LayerMask _terrainLayers;
 
-    [Tooltip("The maximum number of attempts to spawn a checkpoint")]
-    [SerializeField]
-
     private float _minHeight;
     private float _maxHeight;
 
