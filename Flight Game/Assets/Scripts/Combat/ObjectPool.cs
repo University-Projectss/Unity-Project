@@ -43,7 +43,7 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = _pool.Count; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(_object);
+            GameObject obj = Instantiate(_object, transform);
             obj.SetActive(false);
             _pool.Add(obj);
         }
