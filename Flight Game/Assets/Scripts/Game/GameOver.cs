@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
 
 public class GameOver : MonoBehaviour
 {
@@ -10,6 +10,9 @@ public class GameOver : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _gameOverTimeOutText;
+
+    [SerializeField]
+    private GameObject _plane;
 
     public void ShowGameOverTime()
     {
@@ -31,20 +34,18 @@ public class GameOver : MonoBehaviour
         gameObject.SetActive(false);
         ResumeGame();
     }
-    public void QuitGameButton()
-    {
-        Application.Quit();
-    }
+
+    public void QuitGameButton() => Application.Quit();
 
     public void ResumeGame()
     {
+        _plane.GetComponent<PlayerInput>().enabled = true;
         Time.timeScale = 1;
-
     }
 
     public void PauseGame()
     {
+        _plane.GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0;
-
     }
 }
