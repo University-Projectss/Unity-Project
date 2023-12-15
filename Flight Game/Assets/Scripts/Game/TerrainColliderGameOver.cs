@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainCollider : MonoBehaviour
+public class TerrainColliderGameOver : MonoBehaviour
 {
     [SerializeField]
     private GameOver _gameOver;
