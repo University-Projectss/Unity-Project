@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchTerrain : MonoBehaviour
+public class TerrainCollider : MonoBehaviour
 {
     [SerializeField]
     private GameOver _gameOver;
