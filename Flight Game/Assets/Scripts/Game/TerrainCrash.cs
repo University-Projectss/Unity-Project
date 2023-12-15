@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TerrainColliderGameOver : MonoBehaviour
+public class TerrainCrash : MonoBehaviour
 {
     [SerializeField]
     private GameOver _gameOver;
