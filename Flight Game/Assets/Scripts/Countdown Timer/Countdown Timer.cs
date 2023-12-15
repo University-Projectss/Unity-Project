@@ -8,7 +8,9 @@ public class CountdownTimer : MonoBehaviour
 
     [SerializeField]
     private float _remainingTime;
-    public GameOver _gameOver;
+
+    [SerializeField]
+    private GameOver _gameOver;
 
     void Update()
     {
