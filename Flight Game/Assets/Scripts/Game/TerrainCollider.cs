@@ -10,7 +10,7 @@ public class TouchTerrain : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag(Constants.TerrainTag))
+        if (collision.gameObject.CompareTag(Constants.TerrainTag))
         {
             _gameOver.ShowGameOverCrash();
         }
