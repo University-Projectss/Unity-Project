@@ -1002,6 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOver: {fileID: 231904927}
+  _collisionLimit: 24
 --- !u!1 &713309429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,7 +1888,7 @@ GameObject:
   - component: {fileID: 1879231939}
   m_Layer: 6
   m_Name: WaterPlane
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
