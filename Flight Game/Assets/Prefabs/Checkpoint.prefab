@@ -121,3 +121,4 @@ MonoBehaviour:
   countdownTimer: {fileID: 0}
   generator: {fileID: 0}
   timerGain: 10
+  _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
