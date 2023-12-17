@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -702,6 +702,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533271653}
   m_CullTransparentMesh: 1
+--- !u!1 &558268937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558268939}
+  - component: {fileID: 558268938}
+  m_Layer: 0
+  m_Name: TargetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &558268938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558268937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f77bd0296d254f4ea1c66a1810c712e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetPrefab: {fileID: -3911842569020916623, guid: 3889b86797ed22749a5350daa11ee203,
+    type: 3}
+  _countdownTimer: {fileID: 2022885822}
+  _spawnCenter: {fileID: 668573931}
+  _spawnRadius: 100
+  _spawnHeight: 150
+  _heightVariance: 10
+  _spawnInterval: 3
+--- !u!4 &558268939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558268937}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.8, y: 107.4, z: -445.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &668573930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,7 +2171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 2114798718}
-  _remainingTime: 2
+  _remainingTime: 10
   _gameOver: {fileID: 231904927}
 --- !u!1 &2052023420
 GameObject:
@@ -2768,3 +2820,4 @@ SceneRoots:
   - {fileID: 2093004833}
   - {fileID: 417082717}
   - {fileID: 905820826}
+  - {fileID: 558268939}
