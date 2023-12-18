@@ -8,8 +8,14 @@ public class Target : MonoBehaviour
     
     [SerializeField]
     private Material _material;
+    
     [SerializeField]
     private float _timerGain;
+
+    [SerializeField]
+    private int _scoreGain;
+
+
     [SerializeField]
     private float _hits;
 
@@ -39,6 +45,7 @@ public class Target : MonoBehaviour
             {
                 countdownTimer.AddTime(_timerGain);
                 _scoreCounter.score.targets += 1;
+                _scoreCounter.score.total += _scoreGain;
                 Destroy(gameObject);
 
                 //Destroy only happens after the current Update Loop

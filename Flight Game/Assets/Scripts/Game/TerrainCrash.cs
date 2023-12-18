@@ -10,7 +10,7 @@ public class TerrainCrash : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(Constants.TerrainTag))
+        if (collision.gameObject.CompareTag(Constants.TerrainTag) && !_gameOver.Over)
         {
             _scoreCounterSO.score.gameOver = "Crash";
             _scoreCounterSO.SaveScore();

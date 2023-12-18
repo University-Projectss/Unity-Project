@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class GameOver : MonoBehaviour
 {
     [SerializeField]
+    private HighscoresDisplay _highscoreDisplay;
+
+    [SerializeField]
     private TextMeshProUGUI _gameOverCrashText;
 
     [SerializeField]
@@ -14,24 +17,33 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject _plane;
 
+    public bool Over { get; private set; }
+
     public void ShowGameOverTime()
     {
-        PauseGame();
+        ShowGameOver();
         _gameOverTimeOutText.gameObject.SetActive(true);
-        gameObject.SetActive(true);
     }
 
     public void ShowGameOverCrash()
     {
-        PauseGame();
+        ShowGameOver();
         _gameOverCrashText.gameObject.SetActive(true);
+    }
+
+    private void ShowGameOver()
+    {
+        PauseGame();
+        Over = true;
+        _highscoreDisplay.WriteScores();
         gameObject.SetActive(true);
     }
 
     public void RestartGameButton()
     {
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Scoring");
         gameObject.SetActive(false);
+        Over = false;
         ResumeGame();
     }
 

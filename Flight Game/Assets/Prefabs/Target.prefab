@@ -100,6 +100,7 @@ MonoBehaviour:
   countdownTimer: {fileID: 0}
   _material: {fileID: 2100000, guid: 4d31a95701afbec4f86c765fa62c169d, type: 2}
   _timerGain: 20
+  _scoreGain: 250
   _hits: 5
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
 --- !u!65 &-4056528577890711243

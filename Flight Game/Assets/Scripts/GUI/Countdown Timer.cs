@@ -13,6 +13,9 @@ public class CountdownTimer : MonoBehaviour
     private GameOver _gameOver;
 
     [SerializeField]
+    private int _scorePerSecond;
+
+    [SerializeField]
     private ScoreCounterSO _scoreCounter;
 
     private float _second;
@@ -42,6 +45,7 @@ public class CountdownTimer : MonoBehaviour
         if(_second > 1) 
         {
             _scoreCounter.score.time += 1;
+            _scoreCounter.score.total += _scorePerSecond;
             _second -= 1;
         }
 

@@ -25,36 +25,34 @@ public class ScoreCounterSO : ScriptableObject
     private string _fileName;
     
     [Serializable]
-    private class HighScores
+    public class HighScores
     {
         public List<Score> scores;
     }
 
-    private HighScores _highscores;
+    public HighScores highscores;
 
     public void SaveScore()
     {
-
-        score.total = score.time * 10 + score.checkpoints * 100 + score.targets * 250;
-        _highscores.scores.Add(score);
+        highscores.scores.Add(score);
 
         //This can be optimized by writing a custom comparer for SortedList
-        _highscores.scores.Sort((s1, s2) => s1.total.CompareTo(s2.total));
-        if (_highscores.scores.Count > _highScoreCount)
+        highscores.scores.Sort((s1, s2) => s2.total.CompareTo(s1.total));
+        if (highscores.scores.Count > _highScoreCount)
         {
-            _highscores.scores.RemoveAt(10);
+            highscores.scores.RemoveAt(10);
         }
 
-        File.WriteAllText(_fileName, JsonUtility.ToJson(_highscores));
+        File.WriteAllText(_fileName, JsonUtility.ToJson(highscores));
     }
 
     public void LoadScores()
     {
         Reset();
-        _highscores = new();
+        highscores = new();
         if (File.Exists(_fileName))
         {
-           _highscores = JsonUtility.FromJson<HighScores>(File.ReadAllText(_fileName));
+           highscores = JsonUtility.FromJson<HighScores>(File.ReadAllText(_fileName));
         }
     }
 
