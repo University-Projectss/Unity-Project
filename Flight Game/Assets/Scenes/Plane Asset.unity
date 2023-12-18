@@ -752,7 +752,7 @@ MonoBehaviour:
   _targetPrefab: {fileID: -3911842569020916623, guid: 3889b86797ed22749a5350daa11ee203,
     type: 3}
   _countdownTimer: {fileID: 842892504}
-  _spawnCenter: {fileID: 0}
+  _spawnCenter: {fileID: 908505397}
   _spawnRadius: 100
   _spawnHeight: 150
   _heightVariance: 10
