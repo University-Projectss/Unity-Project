@@ -64,6 +64,8 @@ public class FlightPhysics : MonoBehaviour
     // FixedUpdate is called at a fixed rate
     void FixedUpdate()
     {
+        gameObject.GetComponentInChildren<Animator>().SetFloat("Speed" , _throttle * 10);
+
         DetermineState();
 
         ApplyThrust();
