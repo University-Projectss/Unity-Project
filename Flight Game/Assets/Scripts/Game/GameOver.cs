@@ -41,6 +41,8 @@ public class GameOver : MonoBehaviour
 
     public void RestartGameButton()
     {
+        //Change this back to "Main Scene" before PR merge
+        //Left like this for easier testing
         SceneManager.LoadScene("Scoring");
         gameObject.SetActive(false);
         Over = false;
