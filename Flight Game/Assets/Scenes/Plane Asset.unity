@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _object: {fileID: 1823358977874895482, guid: 8e64bf863f1e9b141bdbecc84d6b3590, type: 3}
-  poolSize: 200
+  poolSize: 50
 --- !u!4 &199126404
 Transform:
   m_ObjectHideFlags: 0

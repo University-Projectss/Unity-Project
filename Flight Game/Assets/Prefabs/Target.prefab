@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea92bf832ac329948b387fd12cbe73e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countdownTimer: {fileID: 0}
+  countdownTimer: {fileID: 0}
   _material: {fileID: 2100000, guid: 4d31a95701afbec4f86c765fa62c169d, type: 2}
   _timerGain: 20
   _hits: 5
