@@ -537,7 +537,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highscoreDisplay: {fileID: 910179299}
-  _countdownTimer: {fileID: 2022885822}
   _gameOverCrashText: {fileID: 735360320}
   _gameOverTimeOutText: {fileID: 2087316716}
   _plane: {fileID: 668573930}
@@ -2639,7 +2638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 2114798718}
-  _remainingTime: 10
+  _startingTime: 10
   _gameOver: {fileID: 231904927}
   _scorePerSecond: 10
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}

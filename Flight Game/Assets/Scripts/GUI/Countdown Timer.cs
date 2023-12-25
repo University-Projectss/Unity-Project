@@ -7,7 +7,7 @@ public class CountdownTimer : MonoBehaviour
     private TextMeshProUGUI _timerText;
 
     [SerializeField]
-    private float _remainingTime;
+    private float _startingTime;
 
     [SerializeField]
     private GameOver _gameOver;
@@ -19,11 +19,10 @@ public class CountdownTimer : MonoBehaviour
     private ScoreCounterSO _scoreCounter;
 
     private float _second;
+    private float _remainingTime;
 
-    private void Awake()
-    {
-        _remainingTime = 10;
-    }
+    private void Awake() => _remainingTime = _startingTime;
+
     void Update()
     {
         if (_remainingTime > 0)
@@ -39,10 +38,10 @@ public class CountdownTimer : MonoBehaviour
             _scoreCounter.score.gameOver = "Timeout";
             _scoreCounter.SaveScore();
             _gameOver.ShowGameOverTime();
-            
+
         }
 
-        if(_second > 1) 
+        if (_second > 1)
         {
             _scoreCounter.score.time += 1;
             _scoreCounter.score.total += _scorePerSecond;
