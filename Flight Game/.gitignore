@@ -73,6 +73,3 @@ crashlytics-build.properties
 
 # TextMesh Pro
 /[Aa]ssets/[Tt]extMesh*Pro
-
-# Skybox Cubemap Extended
-/[Aa]ssets/BOXOPHOBIC
