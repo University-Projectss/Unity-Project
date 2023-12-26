@@ -8,13 +8,22 @@ public class Target : MonoBehaviour
     
     [SerializeField]
     private Material _material;
+    
     [SerializeField]
     private float _timerGain;
+
+    [SerializeField]
+    private int _scoreGain;
+
+
     [SerializeField]
     private float _hits;
 
     private Material _instanceMaterial;
     private float _hitsLeft;
+
+    [SerializeField]
+    private ScoreCounterSO _scoreCounter;
 
     private void Awake()
     {
@@ -32,14 +41,15 @@ public class Target : MonoBehaviour
                                                 _instanceMaterial.color.g, 
                                                 _instanceMaterial.color.b,
                                                 _instanceMaterial.color.a - 1/_hits);
-
             if(_hitsLeft <= 0)
             {
-            countdownTimer.AddTime(_timerGain);
-            Destroy(gameObject);
+                countdownTimer.AddTime(_timerGain);
+                _scoreCounter.score.targets += 1;
+                _scoreCounter.score.total += _scoreGain;
+                Destroy(gameObject);
 
-            //Destroy only happens after the current Update Loop
-            gameObject.SetActive(false);
+                //Destroy only happens after the current Update Loop
+                gameObject.SetActive(false);
             }
         }
         else if (other.gameObject.CompareTag(Constants.TerrainTag))
