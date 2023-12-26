@@ -24,12 +24,11 @@ public class ObjectPool : MonoBehaviour
 
         var obj = _pool[_validIndex];
 
-        for(int i = (_validIndex + 1) % poolSize; i != _validIndex; i = ++i % poolSize)
+        for(int i = (_validIndex + 1) % poolSize; i != _validIndex; i = (i + 1) % poolSize)
         {
             if (!_pool[i].activeInHierarchy)
             {
                 _validIndex = i;
-                Debug.Log(_validIndex);
                 obj.SetActive(true);
                 return obj;
             }
@@ -37,7 +36,6 @@ public class ObjectPool : MonoBehaviour
 
         _validIndex = ResizePool();
         obj.SetActive(true);
-        Debug.Log(_validIndex);
         return obj;
         
     }

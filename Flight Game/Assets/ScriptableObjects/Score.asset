@@ -13,52 +13,12 @@ MonoBehaviour:
   m_Name: Score
   m_EditorClassIdentifier: 
   score:
-    total: 410
-    time: 11
-    checkpoints: 3
+    total: 0
+    time: 0
+    checkpoints: 0
     targets: 0
-    gameOver: Crash
+    gameOver: 
   _highScoreCount: 10
   _fileName: highscores.json
   highscores:
-    scores:
-    - total: 1250
-      time: 55
-      checkpoints: 7
-      targets: 0
-      gameOver: Crash
-    - total: 880
-      time: 38
-      checkpoints: 5
-      targets: 0
-      gameOver: Crash
-    - total: 410
-      time: 11
-      checkpoints: 3
-      targets: 0
-      gameOver: Crash
-    - total: 360
-      time: 16
-      checkpoints: 2
-      targets: 0
-      gameOver: Crash
-    - total: 260
-      time: 6
-      checkpoints: 2
-      targets: 0
-      gameOver: Crash
-    - total: 160
-      time: 6
-      checkpoints: 1
-      targets: 0
-      gameOver: Crash
-    - total: 130
-      time: 3
-      checkpoints: 1
-      targets: 0
-      gameOver: Crash
-    - total: 40
-      time: 4
-      checkpoints: 0
-      targets: 0
-      gameOver: Crash
+    scores: []
