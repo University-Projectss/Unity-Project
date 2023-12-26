@@ -10,25 +10,36 @@ public class ObjectPool : MonoBehaviour
 
     public int poolSize;
 
+    private int _validIndex;
+
     void Start()
     {
         _pool = new List<GameObject>();
         InitializeObjects();
+        _validIndex = 0;
     }
 
     public GameObject GetPooledObject()
     {
-        foreach(GameObject obj in _pool)
+
+        var obj = _pool[_validIndex];
+
+        for(int i = (_validIndex + 1) % poolSize; i != _validIndex; i = ++i % poolSize)
         {
-            if (!obj.activeInHierarchy)
+            if (!_pool[i].activeInHierarchy)
             {
+                _validIndex = i;
+                Debug.Log(_validIndex);
                 obj.SetActive(true);
                 return obj;
             }
         }
-        int index = ResizePool();
-        _pool[index].SetActive(true);
-        return _pool[index];
+
+        _validIndex = ResizePool();
+        obj.SetActive(true);
+        Debug.Log(_validIndex);
+        return obj;
+        
     }
 
     int ResizePool()
