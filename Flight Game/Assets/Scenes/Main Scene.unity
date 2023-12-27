@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.3529412, g: 0.69411767, b: 1, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.012
+  m_FogDensity: 0.015
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -1902,6 +1902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOver: {fileID: 231904927}
   _scoreCounterSO: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
+  _collisionLimit: 24
 --- !u!114 &908505399
 MonoBehaviour:
   m_ObjectHideFlags: 0
