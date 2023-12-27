@@ -8,7 +8,8 @@ public class TerrainCrash : MonoBehaviour
 
     [SerializeField]
     private ScoreCounterSO _scoreCounterSO;
-    
+
+    [SerializeField]
     private float _collisionLimit;
 
     void OnCollisionEnter(Collision collision)
