@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Checkpoint : MonoBehaviour
 {
-
     public CountdownTimer countdownTimer;
     public CheckpointGenerator generator;
     public float timerGain;

@@ -39,6 +39,11 @@ public class CheckpointGenerator : MonoBehaviour
 
     private float _checkpointDiameter;
 
+    private int _checkpointCount = 0;
+
+    [SerializeField]
+    public DimensionSwitcher switcher;
+
     private void Awake()
     {
         var Mesh = _checkpoint.GetComponent<MeshFilter>();
@@ -52,6 +57,12 @@ public class CheckpointGenerator : MonoBehaviour
 
     public void GenerateCheckpoint(Checkpoint lastCheckpoint, Vector3 direction)
     {
+        if (++_checkpointCount == 2)
+        {
+            _checkpointCount = 0;
+            switcher.GeneratePortal(lastCheckpoint, direction);
+        }
+
         Vector3 lastCheckpointPosition = lastCheckpoint.transform.position;
 
         Checkpoint checkpoint;
@@ -88,6 +99,7 @@ public class CheckpointGenerator : MonoBehaviour
 
         checkpoint.countdownTimer = lastCheckpoint.countdownTimer;
         checkpoint.generator = this;
+        checkpoint.generator.switcher = this.switcher;
     }
 
     private bool PlacementIsValid(Checkpoint checkpoint)
