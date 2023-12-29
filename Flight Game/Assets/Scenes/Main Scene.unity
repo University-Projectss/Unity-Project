@@ -534,13 +534,14 @@ GameObject:
   - component: {fileID: 231904926}
   - component: {fileID: 231904925}
   - component: {fileID: 231904927}
+  - component: {fileID: 231904928}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &231904924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -621,6 +622,29 @@ MonoBehaviour:
   _gameOverCrashText: {fileID: 735360320}
   _gameOverTimeOutText: {fileID: 2087316716}
   _plane: {fileID: 908505396}
+--- !u!223 &231904928
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231904923}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &248630856
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +681,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -101.6, y: -200}
+  m_AnchoredPosition: {x: -101.6, y: -190}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248630858
@@ -1366,7 +1390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 116, y: -200}
+  m_AnchoredPosition: {x: 116, y: -190}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &533271655
@@ -3163,7 +3187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 2114798718}
-  _startingTime: 10
+  _startingTime: 30
   _gameOver: {fileID: 231904927}
   _scorePerSecond: 10
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
@@ -3215,7 +3239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
