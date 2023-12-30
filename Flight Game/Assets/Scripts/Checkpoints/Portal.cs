@@ -1,19 +1,23 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Portal : MonoBehaviour
+public class Portal : Checkpoint
 {
-    public DimensionSwitcher switcher;
-    public PortalGenerator generator;
-
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(Constants.PlayerTag))
         {
-            generator._terrainController.ChangeNoiseTexture();
-            switcher.SwitchDimension();
-            
-            gameObject.SetActive(false);
+            generator.terrainController.ChangeNoiseTexture();
+            generator.switcher.SwitchDimension();
+
+            StartCoroutine(BaseCoroutine(other));
         }
     }
+
+    private IEnumerator BaseCoroutine(Collider other)
+    {
+        yield return new WaitForSeconds(0.5f);
+        base.OnTriggerEnter(other);
+    } 
 }

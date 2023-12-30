@@ -10,7 +10,7 @@ public class Checkpoint : MonoBehaviour
     
     [SerializeField]
     private ScoreCounterSO _scoreCounter;
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(Constants.PlayerTag)){
             
