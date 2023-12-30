@@ -15,13 +15,9 @@ public class DimensionSwitcher : MonoBehaviour
 
     Material terrainMaterial;
 
-    private void Start()
-    {
-        terrainMaterial.color = Color.white;
-    }
-
     private void Awake()
     {
+        terrainMaterial.color = Color.white;
         terrainMaterial = Resources.Load("Materials/Snow", typeof(Material)) as Material;
     }
 
