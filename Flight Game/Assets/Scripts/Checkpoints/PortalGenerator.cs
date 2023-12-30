@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class CheckpointGenerator : MonoBehaviour
+public class PortalGenerator : MonoBehaviour
 {
-    [Tooltip("Checkpoint Prefab to instantiate")]
     [SerializeField]
-    private Checkpoint _checkpoint;
+    private Portal _portal;
 
     [Tooltip("The Terrain Controller object")]
     [SerializeField]
@@ -15,7 +14,7 @@ public class CheckpointGenerator : MonoBehaviour
     private float _minRadius;
 
     [Tooltip("Maximum placement distance in the movement direction")]
-    [SerializeField] 
+    [SerializeField]
     private float _maxRadius;
 
     [Tooltip("Placement radius perpendicular to the movement direction")]
@@ -37,36 +36,27 @@ public class CheckpointGenerator : MonoBehaviour
     private float _minHeight;
     private float _maxHeight;
 
-    private float _checkpointDiameter;
-
-    private int _checkpointCount = 0;
+    private float _portalDiameter;
 
     [SerializeField]
-    private PortalGenerator _portalGenerator;
+    public DimensionSwitcher switcher;
 
     private void Awake()
     {
-        var Mesh = _checkpoint.GetComponent<MeshFilter>();
-        _checkpointDiameter = Mesh.sharedMesh.bounds.size.y;
+        var Mesh = _portal.GetComponent<MeshFilter>();
+        _portalDiameter = Mesh.sharedMesh.bounds.size.y;
 
         _minHeight = _waterLevel.transform.position.y;
         _maxHeight = _minHeight + _heightRadius;
 
         Random.InitState((int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-        _terrainController.tileRandomizationFactor = 150;
     }
 
-    public void GenerateCheckpoint(Checkpoint lastCheckpoint, Vector3 direction)
+    public void GeneratePortal(Checkpoint lastCheckpoint, Vector3 direction)
     {
-        if (++_checkpointCount == 2)
-        {
-            _checkpointCount = 0;
-            _portalGenerator.GeneratePortal(lastCheckpoint, direction);
-        }
-
         Vector3 lastCheckpointPosition = lastCheckpoint.transform.position;
 
-        Checkpoint checkpoint;
+        Portal portal;
         while (true)
         {
             float directionOffset = Random.Range(_minRadius, _maxRadius);
@@ -87,24 +77,23 @@ public class CheckpointGenerator : MonoBehaviour
             float terrainHeight = terrainMesh.GetTerrainHeightAtPosition(potentialPosition);
             potentialPosition.y = Mathf.Max(height, terrainHeight);
 
-            checkpoint = Instantiate(_checkpoint, potentialPosition, Quaternion.identity);
+            portal = Instantiate(_portal, potentialPosition, Quaternion.identity);
 
-            if (PlacementIsValid(checkpoint))
+            if (PlacementIsValid(portal))
             {
                 break;
             }
 
-            Destroy(checkpoint);
-            checkpoint.gameObject.SetActive(false);
+            Destroy(portal);
+            portal.gameObject.SetActive(false);
         }
 
-        checkpoint.countdownTimer = lastCheckpoint.countdownTimer;
-        checkpoint.generator = this;
-        checkpoint.generator._portalGenerator = this._portalGenerator;
+        portal.gameObject.SetActive(true);
+        portal.switcher = this.switcher;
     }
 
-    private bool PlacementIsValid(Checkpoint checkpoint)
+    private bool PlacementIsValid(Portal portal)
     {
-        return Physics.OverlapSphere(checkpoint.transform.position, 4 * _checkpointDiameter, _terrainLayers).Length == 0;
+        return Physics.OverlapSphere(portal.transform.position, 4 * _portalDiameter, _terrainLayers).Length == 0;
     }
 }
