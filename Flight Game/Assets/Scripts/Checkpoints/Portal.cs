@@ -10,6 +10,7 @@ public class Portal : MonoBehaviour
     {
         if (other.gameObject.CompareTag(Constants.PlayerTag))
         {
+            generator._terrainController.ChangeNoiseTexture();
             switcher.SwitchDimension();
             
             gameObject.SetActive(false);

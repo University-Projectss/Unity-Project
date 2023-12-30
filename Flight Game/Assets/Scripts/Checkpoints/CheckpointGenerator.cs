@@ -53,7 +53,6 @@ public class CheckpointGenerator : MonoBehaviour
         _maxHeight = _minHeight + _heightRadius;
 
         Random.InitState((int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-        _terrainController.tileRandomizationFactor = 150;
     }
 
     public void GenerateCheckpoint(Checkpoint lastCheckpoint, Vector3 direction)

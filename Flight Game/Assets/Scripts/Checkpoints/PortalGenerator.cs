@@ -7,7 +7,7 @@ public class PortalGenerator : MonoBehaviour
 
     [Tooltip("The Terrain Controller object")]
     [SerializeField]
-    private TerrainController _terrainController;
+    public TerrainController _terrainController;
 
     [Tooltip("Minimum placement distance in the movement direction")]
     [SerializeField]

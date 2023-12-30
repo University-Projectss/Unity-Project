@@ -3,6 +3,7 @@ using UnityEngine;
 using ProceduralToolkit;
 using Unity.Mathematics;
 using System.Runtime.CompilerServices;
+using System;
 
 [RequireComponent(typeof(MeshFilter))]
 public class GenerateMesh : MonoBehaviour
@@ -162,7 +163,6 @@ public class GenerateMesh : MonoBehaviour
 
     public float GetTerrainHeightAtPosition(Vector3 worldPosition)
     {
-
         // Maximum segments per tile
         int xSegments = Mathf.FloorToInt(TerrainSize.x / CellSize);
         int zSegments = Mathf.FloorToInt(TerrainSize.z / CellSize);
