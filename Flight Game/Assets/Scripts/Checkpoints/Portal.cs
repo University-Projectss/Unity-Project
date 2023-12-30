@@ -15,6 +15,9 @@ public class Portal : Checkpoint
         }
     }
 
+    //If we try and spawn the new checkpoint right after we switch dimensions
+    //it will break because it can't find the previous tiles
+    //Giving it a slight delay is a simple, albeit hack-ish fix.
     private IEnumerator BaseCoroutine(Collider other)
     {
         yield return new WaitForSeconds(0.5f);
