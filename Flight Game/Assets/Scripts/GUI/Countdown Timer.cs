@@ -25,7 +25,6 @@ public class CountdownTimer : MonoBehaviour
 
     void Update()
     {
-        _remainingTime = 70;
         if (_remainingTime > 0)
         {
             _remainingTime -= Time.deltaTime;
