@@ -45,7 +45,6 @@ public class GameOver : MonoBehaviour
         gameObject.SetActive(true);
         _quitButton.SetActive(true);
         _replayButton.SetActive(true);
-
     }
 
     public void RestartGameButton()
