@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08556877, g: 0.3942524, b: 0.9788008, a: 1}
+  m_IndirectSpecularColor: {r: 0.073470764, g: 0.3605391, b: 0.984246, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -557,8 +557,6 @@ RectTransform:
   - {fileID: 225557236}
   - {fileID: 735360319}
   - {fileID: 2087316715}
-  - {fileID: 248630857}
-  - {fileID: 533271654}
   - {fileID: 910179298}
   - {fileID: 1937113149}
   m_Father: {fileID: 2052023425}
@@ -621,6 +619,8 @@ MonoBehaviour:
   _highscoreDisplay: {fileID: 910179299}
   _gameOverCrashText: {fileID: 735360320}
   _gameOverTimeOutText: {fileID: 2087316716}
+  _quitButton: {fileID: 533271653}
+  _replayButton: {fileID: 248630856}
   _plane: {fileID: 908505396}
 --- !u!223 &231904928
 Canvas:
@@ -663,7 +663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &248630857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -671,13 +671,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248630856}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1431202223}
-  m_Father: {fileID: 231904924}
+  m_Father: {fileID: 2052023425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1372,7 +1372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &533271654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1380,13 +1380,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533271653}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1640132866}
-  m_Father: {fileID: 231904924}
+  m_Father: {fileID: 2052023425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2531,9 +2531,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Replay
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 75b5d4aa6271a184b9d02a6b1e3e9efd, type: 2}
-  m_sharedMaterial: {fileID: 8087257706215993474, guid: 75b5d4aa6271a184b9d02a6b1e3e9efd,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2721,9 +2720,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 75b5d4aa6271a184b9d02a6b1e3e9efd, type: 2}
-  m_sharedMaterial: {fileID: 8087257706215993474, guid: 75b5d4aa6271a184b9d02a6b1e3e9efd,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3288,6 +3286,8 @@ RectTransform:
   - {fileID: 2022885821}
   - {fileID: 66987079}
   - {fileID: 231904924}
+  - {fileID: 248630857}
+  - {fileID: 533271654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
