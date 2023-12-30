@@ -15,6 +15,12 @@ public class GameOver : MonoBehaviour
     private TextMeshProUGUI _gameOverTimeOutText;
 
     [SerializeField]
+    private GameObject _quitButton;
+
+    [SerializeField]
+    private GameObject _replayButton;
+
+    [SerializeField]
     private GameObject _plane;
 
     public bool Over { get; private set; }
@@ -37,12 +43,17 @@ public class GameOver : MonoBehaviour
         Over = true;
         _highscoreDisplay.WriteScores();
         gameObject.SetActive(true);
+        _quitButton.SetActive(true);
+        _replayButton.SetActive(true);
+
     }
 
     public void RestartGameButton()
     {
         SceneManager.LoadScene("Main Scene");
         gameObject.SetActive(false);
+        _quitButton.SetActive(false);
+        _replayButton.SetActive(false);
         Over = false;
         ResumeGame();
     }

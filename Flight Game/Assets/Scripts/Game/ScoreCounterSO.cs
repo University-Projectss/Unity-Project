@@ -40,7 +40,7 @@ public class ScoreCounterSO : ScriptableObject
         highscores.scores.Sort((s1, s2) => s2.total.CompareTo(s1.total));
         if (highscores.scores.Count > _highScoreCount)
         {
-            highscores.scores.RemoveAt(10);
+            highscores.scores.RemoveAt(_highScoreCount);
         }
 
         File.WriteAllText(_fileName, JsonUtility.ToJson(highscores));
