@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TerrainController : MonoBehaviour {
@@ -46,7 +47,7 @@ public class TerrainController : MonoBehaviour {
     private bool _usePerlinNoise = true;
 
     [SerializeField]
-    private Texture2D _noise;
+    public Texture2D _noise;
 
     public static float[][] noisePixels;
 
@@ -63,9 +64,20 @@ public class TerrainController : MonoBehaviour {
 
     [Tooltip("Multiplier that introduces additional variation to the seed.")]
     [SerializeField]
-    private int tileRandomizationFactor = 100;
+    public int tileRandomizationFactor = 100;
 
     private static readonly int _terrainLayer = 6;
+
+    private Texture2D[] loadedTextures;
+
+    private void Start()
+    {
+        // Preload all noisemaps
+        loadedTextures = Resources.LoadAll<Texture2D>("Textures/Terrain/");
+
+        // Load the terrain
+        InitialLoad();
+    }
 
     private void Awake()
     {
@@ -83,9 +95,30 @@ public class TerrainController : MonoBehaviour {
         // noisePixels.Length represents the height of the noise texture, and noisePixels[0].Length represents the width.
     }
 
+    private Texture2D GetRandomTexture()
+    {
+        Texture2D newTexture;
 
-    private void Start() {
-        InitialLoad();
+        do
+        {
+            int randomIndex = Random.Range(0, loadedTextures.Length);
+            newTexture = loadedTextures[randomIndex];
+        } while (newTexture == _noise);
+
+        return newTexture;
+    }
+
+    public void ChangeNoiseTexture()
+    {
+        // Update the noise texture and pixels
+        _noise = GetRandomTexture();
+        noisePixels = GetGrayScalePixels(_noise);
+
+        // Notify GenerateMesh script about the change
+        GenerateMesh.UsePerlinNoise = _usePerlinNoise;
+        _noiseRange = _usePerlinNoise ? Vector2.one * 256 : new Vector2(noisePixels.Length, noisePixels[0].Length);
+
+        DestroyTerrain();
     }
 
     public void InitialLoad() {
@@ -239,10 +272,12 @@ public class TerrainController : MonoBehaviour {
         _water.parent = null;
         _playerTransform.parent = null;
 
-        foreach (Transform t in _gameTransforms)
-            t.parent = Level;
+        if (Level != null)
+        {
+            foreach (Transform t in _gameTransforms)
+                t.parent = Level;
+        }
 
-        Destroy(Level);
         terrainTiles.Clear();
     }
 
@@ -266,5 +301,4 @@ public class TerrainController : MonoBehaviour {
 
         return grayscale2d.Select(a => a.ToArray()).ToArray();
     }
-
 }

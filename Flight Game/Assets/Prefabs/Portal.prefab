@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2499481733964965733}
   - component: {fileID: 3382939880590781426}
   - component: {fileID: 2180646334964696705}
-  - component: {fileID: 8667647573171359797}
+  - component: {fileID: -6250695516819155446}
   m_Layer: 0
-  m_Name: Checkpoint
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4c9d8e3b773560b46a56ccb73549a710, type: 2}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8667647573171359797
+--- !u!114 &-6250695516819155446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3204139437567078158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e7448c95c81f1409ff964362628a5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 34de7de3f288a554ebfef70e33f52f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 0}
   generator: {fileID: 0}
-  timerGain: 10
-  scoreGain: 100
+  timerGain: 20
+  scoreGain: 1000
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}

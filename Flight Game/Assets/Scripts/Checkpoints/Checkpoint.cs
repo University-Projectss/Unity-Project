@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Checkpoint : MonoBehaviour
 {
-
     public CountdownTimer countdownTimer;
     public CheckpointGenerator generator;
     public float timerGain;
@@ -11,7 +10,7 @@ public class Checkpoint : MonoBehaviour
     
     [SerializeField]
     private ScoreCounterSO _scoreCounter;
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(Constants.PlayerTag)){
             
