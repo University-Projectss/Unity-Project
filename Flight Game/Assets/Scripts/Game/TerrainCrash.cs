@@ -19,11 +19,12 @@ public class TerrainCrash : MonoBehaviour
             return;
         }
 
+        Vector3 planeSpeedVec = GetComponent<Rigidbody>().velocity;
         float avg = 0;
         foreach (ContactPoint contact in collision.contacts)
         {
             Vector3 collisionDir = contact.point - transform.position;
-            avg += Vector3.Dot(collisionDir.normalized, GetComponent<Rigidbody>().velocity);
+            avg += Vector3.Dot(collisionDir.normalized, planeSpeedVec);
         }
 
         if (Math.Abs(avg / collision.contacts.Length) < _collisionLimit)
