@@ -19,9 +19,14 @@ public class TerrainCrash : MonoBehaviour
             return;
         }
 
-        Vector3 collisionDir = collision.contacts[0].point - transform.position;
-        float inlineSpeed = Vector3.Dot(collisionDir.normalized, GetComponent<Rigidbody>().velocity);
-        if (Math.Abs(inlineSpeed) < _collisionLimit)
+        float avg = 0;
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            Vector3 collisionDir = contact.point - transform.position;
+            avg += Vector3.Dot(collisionDir.normalized, GetComponent<Rigidbody>().velocity);
+        }
+
+        if (Math.Abs(avg / collision.contacts.Length) < _collisionLimit)
         {
             _scoreCounterSO.score.gameOver = "Crash";
             _scoreCounterSO.SaveScore();
