@@ -835,6 +835,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 7151977477961885369, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
+      propertyPath: _plane
+      value: 
+      objectReference: {fileID: 908505397}
     - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
         type: 3}
       propertyPath: generator
@@ -3545,7 +3550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 2114798718}
-  _startingTime: 10
+  _startingTime: 100
   _gameOver: {fileID: 908271671}
   _scorePerSecond: 10
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
