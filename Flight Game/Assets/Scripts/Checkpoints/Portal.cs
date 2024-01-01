@@ -15,6 +15,7 @@ public class Portal : Checkpoint
         {
             generator.terrainController.ChangeNoiseTexture();
             generator.switcher.SwitchDimension();
+            _scoreCounter.score.portals += 1;
 
             _waypoint.SetActive(false);
             _entered = true;

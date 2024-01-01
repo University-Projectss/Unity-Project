@@ -13,6 +13,7 @@ public class ScoreCounterSO : ScriptableObject
         public int time = 0;
         public int checkpoints = 0;
         public int targets = 0;
+        public int portals = 0;
         public string gameOver = "";
     }
 
