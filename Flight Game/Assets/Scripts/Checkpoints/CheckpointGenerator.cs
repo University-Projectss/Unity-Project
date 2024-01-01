@@ -40,6 +40,10 @@ public class CheckpointGenerator : MonoBehaviour
     [SerializeField]
     private float _heightRadius;
 
+    [Tooltip("Portal placement height, counting from water level")]
+    [SerializeField]
+    private float _portalHeight;
+
     [Tooltip("Which layers constitute the terrain")]
     [SerializeField]
     private LayerMask _terrainLayers;
@@ -74,8 +78,7 @@ public class CheckpointGenerator : MonoBehaviour
         {
             float directionOffset = Random.Range(_minRadius, _maxRadius);
             float lateralOffset = Random.Range(-_lateralRadius, _lateralRadius);
-            float height = Random.Range(_minHeight, _maxHeight);
-
+            float height = portal ? _minHeight + _portalHeight : Random.Range(_minHeight, _maxHeight);
             Vector2 pOffset = Vector2.Perpendicular(new Vector2(direction.x, direction.z)) * lateralOffset;
 
             Vector3 offset = direction * directionOffset +

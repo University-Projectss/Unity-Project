@@ -3045,6 +3045,7 @@ MonoBehaviour:
   _lateralRadius: 40
   _waterLevel: {fileID: 1903168319}
   _heightRadius: 50
+  _portalHeight: 75
   _terrainLayers:
     serializedVersion: 2
     m_Bits: 64

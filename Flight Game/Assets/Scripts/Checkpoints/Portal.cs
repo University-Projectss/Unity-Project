@@ -4,13 +4,20 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Portal : Checkpoint
 {
+    [SerializeField]
+    private GameObject _waypoint;
+
+    private bool _entered;
+
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(Constants.PlayerTag))
+        if (!_entered && other.gameObject.CompareTag(Constants.PlayerTag))
         {
             generator.terrainController.ChangeNoiseTexture();
             generator.switcher.SwitchDimension();
 
+            _waypoint.SetActive(false);
+            _entered = true;
             StartCoroutine(BaseCoroutine(other));
         }
     }
@@ -20,7 +27,7 @@ public class Portal : Checkpoint
     //Giving it a slight delay is a simple, albeit hack-ish fix.
     private IEnumerator BaseCoroutine(Collider other)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         base.OnTriggerEnter(other);
     } 
 }
