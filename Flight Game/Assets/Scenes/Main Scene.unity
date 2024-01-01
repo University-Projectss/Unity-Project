@@ -3550,7 +3550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 2114798718}
-  _startingTime: 100
+  _startingTime: 15
   _gameOver: {fileID: 908271671}
   _scorePerSecond: 10
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
