@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TerrainController : MonoBehaviour {
@@ -108,7 +106,7 @@ public class TerrainController : MonoBehaviour {
         return newTexture;
     }
 
-    public void ChangeNoiseTexture()
+    public void ChangeNoiseTexture(System.Action callback)
     {
         // Update the noise texture and pixels
         _noise = GetRandomTexture();
@@ -119,6 +117,8 @@ public class TerrainController : MonoBehaviour {
         _noiseRange = _usePerlinNoise ? Vector2.one * 256 : new Vector2(noisePixels.Length, noisePixels[0].Length);
 
         DestroyTerrain();
+        Update();
+        callback();
     }
 
     public void InitialLoad() {
@@ -271,7 +271,7 @@ public class TerrainController : MonoBehaviour {
     public void DestroyTerrain() {
         _water.parent = null;
         _playerTransform.parent = null;
-
+        _previousCenterTiles = null;
         if (Level != null)
         {
             foreach (Transform t in _gameTransforms)
