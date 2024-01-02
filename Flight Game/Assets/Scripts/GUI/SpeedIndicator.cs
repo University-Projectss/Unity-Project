@@ -8,7 +8,7 @@ public class SpeedIndicator : MonoBehaviour
     private Rigidbody _plane;
 
     [SerializeField]
-    private Camera _camera;
+    private RectTransform _crosshair;
 
     [SerializeField]
     private TextMeshProUGUI _speedText;
@@ -23,11 +23,11 @@ public class SpeedIndicator : MonoBehaviour
     private Color _colorSlow;
 
     [SerializeField]
-    private float _Xoffset;
+    private float _xOffset;
 
     void Update()
     {
-        _speedText.transform.localPosition = _camera.WorldToScreenPoint(_camera.transform.position + _plane.transform.forward) - new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight / 2) + Vector3.left * _Xoffset;
+        _speedText.transform.localPosition = _crosshair.localPosition + Vector3.left * _xOffset;
 
         float speed = _plane.velocity.magnitude;
         if (speed > 37)
@@ -45,3 +45,4 @@ public class SpeedIndicator : MonoBehaviour
         _speedText.text = Math.Floor(_plane.velocity.magnitude).ToString();
     }
 }
+
