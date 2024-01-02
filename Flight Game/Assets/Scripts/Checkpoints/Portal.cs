@@ -4,23 +4,21 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Portal : Checkpoint
 {
+    [SerializeField]
+    private GameObject _waypoint;
+
+    private bool _entered;
+
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(Constants.PlayerTag))
+        if (!_entered && other.gameObject.CompareTag(Constants.PlayerTag))
         {
-            generator.terrainController.ChangeNoiseTexture();
+            generator.terrainController.ChangeNoiseTexture(() => base.OnTriggerEnter(other));
             generator.switcher.SwitchDimension();
+            _scoreCounter.score.portals += 1;
 
-            StartCoroutine(BaseCoroutine(other));
+            _waypoint.SetActive(false);
+            _entered = true;
         }
     }
-
-    //If we try and spawn the new checkpoint right after we switch dimensions
-    //it will break because it can't find the previous tiles
-    //Giving it a slight delay is a simple, albeit hack-ish fix.
-    private IEnumerator BaseCoroutine(Collider other)
-    {
-        yield return new WaitForSeconds(0.5f);
-        base.OnTriggerEnter(other);
-    } 
 }
