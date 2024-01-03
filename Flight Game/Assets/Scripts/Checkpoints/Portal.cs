@@ -13,12 +13,25 @@ public class Portal : Checkpoint
     {
         if (!_entered && other.gameObject.CompareTag(Constants.PlayerTag))
         {
-            generator.terrainController.ChangeNoiseTexture(() => base.OnTriggerEnter(other));
+
+            StartCoroutine(TerrainCoroutine(other));
             generator.switcher.SwitchDimension();
             _scoreCounter.score.portals += 1;
 
             _waypoint.SetActive(false);
             _entered = true;
         }
+    }
+
+    private IEnumerator TerrainCoroutine(Collider other)
+    {
+        yield return new WaitForSeconds(0.5f);
+        generator.terrainController.ChangeNoiseTexture(() => StartCoroutine(GenerationCoroutine(other)));
+    }
+
+    private IEnumerator GenerationCoroutine(Collider other)
+    {
+        yield return new WaitForSeconds(0.5f);
+        base.OnTriggerEnter(other);
     }
 }
