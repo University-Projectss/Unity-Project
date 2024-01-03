@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0753326, g: 0.36649126, b: 1.2574544, a: 1}
+  m_IndirectSpecularColor: {r: 0.07534479, g: 0.36650163, b: 1.2579302, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1321,7 +1321,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660997917
 MonoBehaviour:
@@ -1336,13 +1336,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plane: {fileID: 908505402}
-  _camera: {fileID: 383412846}
   _crosshair: {fileID: 1289733581}
   _speedText: {fileID: 1777368829}
   _colorFast: {r: 0.39372292, g: 0.9069352, b: 0.39372292, a: 1}
   _colorMedium: {r: 0.94252217, g: 0.94252217, b: 0.45975894, a: 1}
   _colorSlow: {r: 0.8544761, g: 0.25404063, b: 0.25404063, a: 1}
-  _xOffset: -105.6
+  _xOffset: -105
 --- !u!1 &671648653
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,8 +3167,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 90.77, y: 101.6797}
-  m_SizeDelta: {x: 43.0726, y: 22.2011}
+  m_AnchoredPosition: {x: 57.4, y: 2.5}
+  m_SizeDelta: {x: 50, y: 26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1777368829
 MonoBehaviour:
@@ -3191,7 +3190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 312
+  m_text: 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}

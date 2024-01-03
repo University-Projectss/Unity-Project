@@ -27,7 +27,7 @@ public class SpeedIndicator : MonoBehaviour
 
     void Update()
     {
-        _speedText.transform.localPosition = _crosshair.localPosition + Vector3.left * _xOffset;
+        _speedText.transform.position = _crosshair.position + Vector3.left * _xOffset;
 
         float speed = _plane.velocity.magnitude;
         if (speed > 37)
