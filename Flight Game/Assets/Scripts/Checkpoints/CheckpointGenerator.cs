@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CheckpointGenerator : MonoBehaviour
@@ -18,14 +19,14 @@ public class CheckpointGenerator : MonoBehaviour
     private float _portalFrequency;
 
     [Tooltip("The Terrain Controller object")]
-    public  TerrainController terrainController;
+    public TerrainController terrainController;
 
     [Tooltip("Minimum placement distance in the movement direction")]
     [SerializeField]
     private float _minRadius;
 
     [Tooltip("Maximum placement distance in the movement direction")]
-    [SerializeField] 
+    [SerializeField]
     private float _maxRadius;
 
     [Tooltip("Placement radius perpendicular to the movement direction")]
@@ -48,11 +49,26 @@ public class CheckpointGenerator : MonoBehaviour
     [SerializeField]
     private LayerMask _terrainLayers;
 
+    [SerializeField]
+    private GameObject _targetGenerator;
+
+    [SerializeField]
+    private Rigidbody _plane;
+    
+    [SerializeField]
+    private int _cubeEventDurationSeconds;
+
+    [SerializeField]
+    private int _cubeEventFrequency;
+
     private float _minHeight;
     private float _maxHeight;
 
-    private int _checkpointCount = 0;
+    private int _checkpointCount = 1;
 
+    private bool _cubeEvent = false;
+
+    private Checkpoint _lastCheckpoint;
 
     private void Awake()
     {
@@ -62,16 +78,32 @@ public class CheckpointGenerator : MonoBehaviour
         Random.InitState((int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
     }
 
-    public void GenerateCheckpoint(Checkpoint lastCheckpoint, Vector3 direction)
+    public void GenerateCheckpoint(Vector3 direction, Vector3 planePos, Checkpoint lastCheckpoint = null)
     {
-        Vector3 lastCheckpointPosition = lastCheckpoint.transform.position;
-
-        Checkpoint checkpoint;
-        bool portal = false;
-        if (++_checkpointCount == _portalFrequency)
+        if (_cubeEvent)
         {
-            _checkpointCount = -1;
-            portal = true;
+            _cubeEvent = false;
+            _targetGenerator.GetComponent<TargetGenerator>().enabled = true;
+            StartCoroutine(DisableScriptWait());
+            return;
+        }
+
+        if (lastCheckpoint == null)
+        {
+            lastCheckpoint = _lastCheckpoint;
+        }
+
+        Vector3 lastCheckpointPosition = planePos;
+        Checkpoint checkpoint;
+
+        ++_checkpointCount;
+
+        bool portal = _checkpointCount % _portalFrequency == 0;
+        _cubeEvent = _checkpointCount % _cubeEventFrequency == 0;
+
+        if (_checkpointCount == _cubeEventFrequency * _portalFrequency)
+        {
+            _checkpointCount = 0;
         }
 
         while (true)
@@ -112,6 +144,8 @@ public class CheckpointGenerator : MonoBehaviour
 
         checkpoint.countdownTimer = lastCheckpoint.countdownTimer;
         checkpoint.generator = this;
+        checkpoint._plane = lastCheckpoint._plane;
+        _lastCheckpoint = checkpoint;
     }
 
     private bool PlacementIsValid(Checkpoint checkpoint)
@@ -119,5 +153,13 @@ public class CheckpointGenerator : MonoBehaviour
         var Mesh = _checkpoint.GetComponent<MeshFilter>();
         var checkpointDiameter = Mesh.sharedMesh.bounds.size.y;
         return Physics.OverlapSphere(checkpoint.transform.position, 4 * checkpointDiameter, _terrainLayers).Length == 0;
+    }
+
+    IEnumerator DisableScriptWait()
+    {
+        yield return new WaitForSeconds(_cubeEventDurationSeconds);
+        _targetGenerator.GetComponent<TargetGenerator>().enabled = false;
+        Vector3 direction = Vector3.ProjectOnPlane(_plane.velocity, Vector3.down).normalized;
+        GenerateCheckpoint(direction, _plane.transform.position, null);
     }
 }
