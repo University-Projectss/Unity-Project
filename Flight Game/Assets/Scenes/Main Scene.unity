@@ -3110,7 +3110,7 @@ MonoBehaviour:
   _portal: {fileID: -6250695516819155446, guid: b0f4de0dd41b70344990323bfefdad8e,
     type: 3}
   switcher: {fileID: 1554781801}
-  _portalFrequency: 1
+  _portalFrequency: 2
   terrainController: {fileID: 487562187}
   _minRadius: 100
   _maxRadius: 140
@@ -3124,7 +3124,7 @@ MonoBehaviour:
   _targetGenerator: {fileID: 486563237}
   _plane: {fileID: 908505402}
   _cubeEventDurationSeconds: 10
-  _cubeEventFrequency: 1
+  _cubeEventFrequency: 3
 --- !u!4 &1554781800
 Transform:
   m_ObjectHideFlags: 0
