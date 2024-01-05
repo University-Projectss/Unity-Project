@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckpointGenerator : MonoBehaviour
@@ -16,7 +17,7 @@ public class CheckpointGenerator : MonoBehaviour
 
     [Tooltip("How often portals should spawn instead of normal checkpoints")]
     [SerializeField]
-    private float _portalFrequency;
+    private int _portalFrequency;
 
     [Tooltip("The Terrain Controller object")]
     public TerrainController terrainController;
@@ -54,10 +55,11 @@ public class CheckpointGenerator : MonoBehaviour
 
     [SerializeField]
     private Rigidbody _plane;
-    
+
     [SerializeField]
     private int _cubeEventDurationSeconds;
 
+    [Tooltip("Number of portals taken before a Cube Event")]
     [SerializeField]
     private int _cubeEventFrequency;
 
@@ -67,6 +69,7 @@ public class CheckpointGenerator : MonoBehaviour
     private int _checkpointCount = 1;
 
     private bool _cubeEvent = false;
+    private bool _triggerPortal = false;
 
     private Checkpoint _lastCheckpoint;
 
@@ -95,15 +98,24 @@ public class CheckpointGenerator : MonoBehaviour
 
         Vector3 lastCheckpointPosition = planePos;
         Checkpoint checkpoint;
-
-        ++_checkpointCount;
-
-        bool portal = _checkpointCount % _portalFrequency == 0;
-        _cubeEvent = _checkpointCount % _cubeEventFrequency == 0;
-
-        if (_checkpointCount == _cubeEventFrequency * _portalFrequency)
+        bool portal;
+        if (!_triggerPortal)
         {
-            _checkpointCount = 0;
+
+            ++_checkpointCount;
+            portal = _checkpointCount % (_portalFrequency + 1) == 0;
+            _cubeEvent = _checkpointCount % (_cubeEventFrequency * (_portalFrequency + 1)) == 0;
+
+            if (_cubeEvent)
+            {
+                _checkpointCount = 0;
+                _triggerPortal = true;
+            }
+        }
+        else
+        {
+            portal = true;
+            _triggerPortal = false;
         }
 
         while (true)
@@ -144,7 +156,6 @@ public class CheckpointGenerator : MonoBehaviour
 
         checkpoint.countdownTimer = lastCheckpoint.countdownTimer;
         checkpoint.generator = this;
-        checkpoint._plane = lastCheckpoint._plane;
         _lastCheckpoint = checkpoint;
     }
 
