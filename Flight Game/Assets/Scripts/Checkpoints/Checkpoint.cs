@@ -5,7 +5,7 @@ public class Checkpoint : MonoBehaviour
 {
     public CountdownTimer countdownTimer;
     public CheckpointGenerator generator;
-    public GameObject _plane;
+    public GameObject plane;
     public float timerGain;
     public int scoreGain;
 
@@ -20,7 +20,7 @@ public class Checkpoint : MonoBehaviour
             _scoreCounter.score.total += scoreGain;
 
             Vector3 direction = Vector3.ProjectOnPlane(other.attachedRigidbody.velocity, Vector3.down).normalized;
-            generator.GenerateCheckpoint(direction, _plane.transform.position, this);
+            generator.GenerateCheckpoint(direction, plane.transform.position, this);
             Destroy(gameObject);
 
             //Destroy only happens after the current Update Loop
