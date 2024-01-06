@@ -842,6 +842,17 @@ PrefabInstance:
       objectReference: {fileID: 908505397}
     - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
         type: 3}
+      propertyPath: _plane
+      value: 
+      objectReference: {fileID: 908505396}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: -3911842569020916623, guid: 3889b86797ed22749a5350daa11ee203,
+        type: 3}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
       propertyPath: generator
       value: 
       objectReference: {fileID: 1554781799}
@@ -855,6 +866,11 @@ PrefabInstance:
       propertyPath: _countdownTimer
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
+      propertyPath: targetGenerator
+      value: 
+      objectReference: {fileID: 486563238}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1169,7 +1185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486563237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f77bd0296d254f4ea1c66a1810c712e, type: 3}
   m_Name: 
@@ -1181,7 +1197,7 @@ MonoBehaviour:
   _spawnRadius: 100
   _spawnHeight: 150
   _heightVariance: 10
-  _spawnInterval: 3
+  _spawnInterval: 0.4
 --- !u!4 &486563239
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,13 +1352,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plane: {fileID: 908505402}
-  _camera: {fileID: 383412846}
   _crosshair: {fileID: 1289733581}
   _speedText: {fileID: 1777368829}
-  _colorFast: {r: 0.39372292, g: 0.9069352, b: 0.39372292, a: 1}
-  _colorMedium: {r: 0.94252217, g: 0.94252217, b: 0.45975894, a: 1}
-  _colorSlow: {r: 0.8544761, g: 0.25404063, b: 0.25404063, a: 1}
-  _xOffset: -105.6
+  _colorFast: {r: 0, g: 0, b: 0, a: 0}
+  _colorMedium: {r: 0, g: 0, b: 0, a: 0}
+  _colorSlow: {r: 0, g: 0, b: 0, a: 0}
+  _xOffset: 0
 --- !u!1 &671648653
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,6 +3121,10 @@ MonoBehaviour:
   _terrainLayers:
     serializedVersion: 2
     m_Bits: 64
+  _targetGenerator: {fileID: 486563237}
+  _plane: {fileID: 908505402}
+  _cubeEventDurationSeconds: 10
+  _cubeEventFrequency: 3
 --- !u!4 &1554781800
 Transform:
   m_ObjectHideFlags: 0
