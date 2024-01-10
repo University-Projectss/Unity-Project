@@ -23,6 +23,9 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject _plane;
 
+    [SerializeField]
+    private AudioSource _audioSource;
+
     public bool Over { get; private set; }
 
     public void ShowGameOverTime()
@@ -69,5 +72,6 @@ public class GameOver : MonoBehaviour
     {
         _plane.GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0;
+        _audioSource.Stop();
     }
 }
