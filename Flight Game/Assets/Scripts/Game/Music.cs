@@ -5,11 +5,12 @@ using UnityEngine;
 public class Music : MonoBehaviour
 {
     public AudioClip[] backgroundMusicClips;
-    private static int currentClipIndex = 0;
+    private static int _currentClipIndex = 0;
+    public AudioSource _source;
 
     private void Start()
     {
-        SetBackgroundMusic(currentClipIndex);
+        SetBackgroundMusic(_currentClipIndex);
     }
 
     private void Update()
@@ -19,24 +20,36 @@ public class Music : MonoBehaviour
         {
             ChangeBackgroundMusic();
         }
+
+        // Check if the DownArrow key is released (key up event)
+        if (Input.GetKeyUp(KeyCode.DownArrow) && _source.volume > 0)
+        {
+            _source.volume -= 0.1f;
+        }
+
+        // Check if the UpArrow key is released (key up event)
+        if (Input.GetKeyUp(KeyCode.UpArrow) && _source.volume < 1)
+        {
+            _source.volume += 0.1f;
+        }
     }
 
     private void ChangeBackgroundMusic()
     {
-        ++currentClipIndex;
+        ++_currentClipIndex;
 
-        if (currentClipIndex >= backgroundMusicClips.Length)
+        if (_currentClipIndex >= backgroundMusicClips.Length)
         {
             // If it exceeds, loop back to the first clip
-            currentClipIndex = 0;
+            _currentClipIndex = 0;
         }
 
-        SetBackgroundMusic(currentClipIndex);
+        SetBackgroundMusic(_currentClipIndex);
     }
 
     private void SetBackgroundMusic(int index)
     {
-        GetComponent<AudioSource>().clip = backgroundMusicClips[index];
-        GetComponent<AudioSource>().Play();
+        _source.clip = backgroundMusicClips[index];
+        _source.Play();
     }
 }
