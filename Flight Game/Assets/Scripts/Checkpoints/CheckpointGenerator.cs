@@ -53,8 +53,7 @@ public class CheckpointGenerator : MonoBehaviour
     [SerializeField]
     private GameObject _targetGenerator;
 
-    [SerializeField]
-    private Rigidbody _plane;
+    public Rigidbody plane;
 
     [SerializeField]
     private int _cubeEventDurationSeconds;
@@ -170,7 +169,7 @@ public class CheckpointGenerator : MonoBehaviour
     {
         yield return new WaitForSeconds(_cubeEventDurationSeconds);
         _targetGenerator.GetComponent<TargetGenerator>().enabled = false;
-        Vector3 direction = Vector3.ProjectOnPlane(_plane.velocity, Vector3.down).normalized;
-        GenerateCheckpoint(direction, _plane.transform.position, null);
+        Vector3 direction = Vector3.ProjectOnPlane(plane.velocity, Vector3.down).normalized;
+        GenerateCheckpoint(direction, plane.transform.position, null);
     }
 }

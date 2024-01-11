@@ -121,10 +121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 0}
   generator: {fileID: 0}
-  targetGenerator: {fileID: 0}
-  target: {fileID: -3911842569020916623, guid: 3889b86797ed22749a5350daa11ee203, type: 3}
   timerGain: 20
   scoreGain: 1000
+  _minRespawnTime: 0
+  _maxRespawnTime: 0
+  respawnTimePercentage: 1
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
   _waypoint: {fileID: 8900662837559913722}
 --- !u!1 &8900662837559913722
