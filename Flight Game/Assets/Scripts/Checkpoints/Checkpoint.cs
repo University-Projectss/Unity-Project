@@ -18,7 +18,7 @@ public class Checkpoint : MonoBehaviour
 
     [SerializeField]
     [Range(0f, 1f)]
-    private float respawnTimePercentage;
+    private float _respawnTimePercentage;
 
     [SerializeField]
     private Material _material;
@@ -26,10 +26,10 @@ public class Checkpoint : MonoBehaviour
     [SerializeField]
     protected GameObject _waypoint;
 
-    private Material _instanceMaterial;
-
     [SerializeField]
     protected ScoreCounterSO _scoreCounter;
+
+    private Material _instanceMaterial;
 
     protected virtual void Awake()
     {
