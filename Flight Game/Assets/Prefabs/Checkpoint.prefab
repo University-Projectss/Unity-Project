@@ -123,6 +123,11 @@ MonoBehaviour:
   generator: {fileID: 0}
   timerGain: 10
   scoreGain: 100
+  _minRespawnTime: 5
+  _maxRespawnTime: 20
+  respawnTimePercentage: 0.3
+  _material: {fileID: 2100000, guid: 4c9d8e3b773560b46a56ccb73549a710, type: 2}
+  _waypoint: {fileID: 6488252994746956878}
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
 --- !u!1 &6488252994746956878
 GameObject:

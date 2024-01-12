@@ -4,16 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Portal : Checkpoint
 {
-    [SerializeField]
-    private GameObject _waypoint;
-
     private bool _entered;
 
+    protected override void Awake() { }
+
+    protected override void Start() { }
+    
     protected override void OnTriggerEnter(Collider other)
     {
         if (!_entered && other.gameObject.CompareTag(Constants.PlayerTag))
         {
-
             StartCoroutine(TerrainCoroutine(other));
             generator.switcher.SwitchDimension();
             _scoreCounter.score.portals += 1;

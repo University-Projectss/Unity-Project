@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07536813, g: 0.36652446, b: 1.2579206, a: 1}
+  m_IndirectSpecularColor: {r: 0.07534479, g: 0.36650163, b: 1.2579302, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -868,9 +868,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
         type: 3}
+      propertyPath: _maxRespawnTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
+      propertyPath: _minRespawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
       propertyPath: targetGenerator
       value: 
       objectReference: {fileID: 486563238}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
+      propertyPath: respawnTimePercentage
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3272,7 +3287,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _targetGenerator: {fileID: 486563237}
-  _plane: {fileID: 908505402}
+  plane: {fileID: 908505402}
   _cubeEventDurationSeconds: 10
   _cubeEventFrequency: 3
 --- !u!4 &1554781800
@@ -3302,7 +3317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9478615bd13d94140903ef61b4bf1101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDimension: 0
+  currentDimension: 1
 --- !u!1 &1777368827
 GameObject:
   m_ObjectHideFlags: 0
