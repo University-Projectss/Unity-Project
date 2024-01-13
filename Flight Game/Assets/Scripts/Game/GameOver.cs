@@ -52,7 +52,8 @@ public class GameOver : MonoBehaviour
 
     public void RestartGameButton()
     {
-        SceneManager.LoadScene("Main Scene");
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
         gameObject.SetActive(false);
         _quitButton.SetActive(false);
         _replayButton.SetActive(false);
