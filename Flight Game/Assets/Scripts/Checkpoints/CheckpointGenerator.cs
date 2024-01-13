@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class CheckpointGenerator : MonoBehaviour
 {
+    public Rigidbody plane;
+
+    [Tooltip("The Terrain Controller object")]
+    public TerrainController terrainController;
+
+    [Tooltip("Dimension Switcher object")]
+    public DimensionSwitcher switcher;
+
     [Tooltip("Checkpoint Prefab to instantiate")]
     [SerializeField]
     private Checkpoint _checkpoint;
@@ -12,15 +20,9 @@ public class CheckpointGenerator : MonoBehaviour
     [SerializeField]
     private Portal _portal;
 
-    [Tooltip("Dimension Switcher object")]
-    public DimensionSwitcher switcher;
-
     [Tooltip("How often portals should spawn instead of normal checkpoints")]
     [SerializeField]
     private int _portalFrequency;
-
-    [Tooltip("The Terrain Controller object")]
-    public TerrainController terrainController;
 
     [Tooltip("Minimum placement distance in the movement direction")]
     [SerializeField]
@@ -52,9 +54,6 @@ public class CheckpointGenerator : MonoBehaviour
 
     [SerializeField]
     private GameObject _targetGenerator;
-
-    [SerializeField]
-    private Rigidbody _plane;
 
     [SerializeField]
     private int _cubeEventDurationSeconds;
@@ -170,7 +169,7 @@ public class CheckpointGenerator : MonoBehaviour
     {
         yield return new WaitForSeconds(_cubeEventDurationSeconds);
         _targetGenerator.GetComponent<TargetGenerator>().enabled = false;
-        Vector3 direction = Vector3.ProjectOnPlane(_plane.velocity, Vector3.down).normalized;
-        GenerateCheckpoint(direction, _plane.transform.position, null);
+        Vector3 direction = Vector3.ProjectOnPlane(plane.velocity, Vector3.down).normalized;
+        GenerateCheckpoint(direction, plane.transform.position, null);
     }
 }

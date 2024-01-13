@@ -20,6 +20,7 @@ public class CountdownTimer : MonoBehaviour
 
     private float _second;
     private float _remainingTime;
+    public float RemainingTime { get { return _remainingTime; } }
 
     private void Awake() => _remainingTime = _startingTime;
 
