@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07536813, g: 0.36652446, b: 1.2579206, a: 1}
+  m_IndirectSpecularColor: {r: 0.07534479, g: 0.36650163, b: 1.2579302, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1244,7 +1244,7 @@ MonoBehaviour:
   _spawnRadius: 100
   _spawnHeight: 150
   _heightVariance: 10
-  _spawnInterval: 0.01
+  _spawnInterval: 1
 --- !u!4 &486563239
 Transform:
   m_ObjectHideFlags: 0
@@ -3192,7 +3192,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _targetGenerator: {fileID: 486563237}
-  _cubeEventDurationSeconds: 15
+  _cubeEventDurationSeconds: 0
   _cubeEventFrequency: 3
   checkpointCount: 1
   lastCheckpoint: {fileID: 0}
@@ -4253,7 +4253,7 @@ PrefabInstance:
     - target: {fileID: 8124664068163893778, guid: 23366af595b090c4f857a5558dba36a9,
         type: 3}
       propertyPath: _maxRespawnTime
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8124664068163893778, guid: 23366af595b090c4f857a5558dba36a9,
         type: 3}
@@ -4263,7 +4263,7 @@ PrefabInstance:
     - target: {fileID: 8124664068163893778, guid: 23366af595b090c4f857a5558dba36a9,
         type: 3}
       propertyPath: _respawnTimePercentage
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

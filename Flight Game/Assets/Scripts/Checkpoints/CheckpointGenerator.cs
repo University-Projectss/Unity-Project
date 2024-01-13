@@ -150,7 +150,7 @@ public class CheckpointGenerator : MonoBehaviour
                 break;
             }
 
-            Destroy(checkpoint);
+            Destroy(checkpoint.gameObject);
             checkpoint.gameObject.SetActive(false);
         }
 
