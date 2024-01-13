@@ -68,16 +68,7 @@ public class TerrainController : MonoBehaviour {
 
     private Texture2D[] loadedTextures;
 
-    private void Start()
-    {
-        // Preload all noisemaps
-        loadedTextures = Resources.LoadAll<Texture2D>("Textures/Terrain/");
-
-        // Load the terrain
-        InitialLoad();
-    }
-
-    private void Awake()
+    public void Generate()
     {
         // Check if a noise texture is provided
         if (_noise)
@@ -91,6 +82,13 @@ public class TerrainController : MonoBehaviour {
         // Otherwise, use the dimensions of the loaded noise texture
         _noiseRange = _usePerlinNoise ? Vector2.one * 256 : new Vector2(noisePixels.Length, noisePixels[0].Length);
         // noisePixels.Length represents the height of the noise texture, and noisePixels[0].Length represents the width.
+
+        // Preload all noisemaps
+        loadedTextures = Resources.LoadAll<Texture2D>("Textures/Terrain/");
+
+        // Load the terrain
+        InitialLoad();
+        Update();
     }
 
     private Texture2D GetRandomTexture()

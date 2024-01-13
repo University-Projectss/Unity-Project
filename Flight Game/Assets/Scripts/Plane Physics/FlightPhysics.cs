@@ -40,6 +40,10 @@ public class FlightPhysics : MonoBehaviour
     [SerializeField]
     private Vector3 _steeringLimits;
 
+    [Tooltip("The initial speed when the plane spawns")]
+    [SerializeField]
+    private float _initialSpeed;
+
     //Both velocity and angular velocity are in Local/Model Space
     //So if our object is normally _, but rotated |, UP is always (0,1,0) in Local Space, but (-1,0,0) in World Space
     private Vector3 _velocity;
@@ -57,7 +61,8 @@ public class FlightPhysics : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
-        _velocity = Vector3.zero;
+        _velocity = transform.forward * _initialSpeed;
+        _rigidBody.velocity = _velocity;
         _angularVelocity = Vector3.zero;
     }
 

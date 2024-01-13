@@ -73,8 +73,9 @@ public class Checkpoint : MonoBehaviour
                                                 _instanceMaterial.color.a);
         }
 
-    Destroy(gameObject);
-    gameObject.SetActive(false);
+        Destroy(gameObject);
+        gameObject.SetActive(false);
+        generator.checkpointCount--;
         generator.GenerateCheckpoint(generator.plane.transform.forward, generator.plane.transform.position, this);
     }
 }

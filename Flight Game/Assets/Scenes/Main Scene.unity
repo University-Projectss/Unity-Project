@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0753326, g: 0.36649126, b: 1.2574544, a: 1}
+  m_IndirectSpecularColor: {r: 0.07534479, g: 0.36650163, b: 1.2579302, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -835,7 +835,7 @@ PrefabInstance:
     - target: {fileID: 3204139437567078158, guid: 84e1524a5e883af40bb9feedb2dfaf36,
         type: 3}
       propertyPath: m_Name
-      value: Checkpoint
+      value: SeedCheckpoint
       objectReference: {fileID: 0}
     - target: {fileID: 7151977477961885369, guid: 84e1524a5e883af40bb9feedb2dfaf36,
         type: 3}
@@ -858,6 +858,11 @@ PrefabInstance:
       propertyPath: generator
       value: 
       objectReference: {fileID: 1554781799}
+    - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+        type: 3}
+      propertyPath: timerGain
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
         type: 3}
       propertyPath: countdownTimer
@@ -1363,7 +1368,7 @@ MonoBehaviour:
   _spawnRadius: 100
   _spawnHeight: 150
   _heightVariance: 10
-  _spawnInterval: 0.4
+  _spawnInterval: 0.01
 --- !u!4 &486563239
 Transform:
   m_ObjectHideFlags: 0
@@ -2053,6 +2058,7 @@ GameObject:
   - component: {fileID: 908505400}
   - component: {fileID: 908505399}
   - component: {fileID: 908505398}
+  - component: {fileID: 908505403}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Player
@@ -2313,6 +2319,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _steeringLimits: {x: 0.03, y: 0.01, z: 0.06}
+  _initialSpeed: 50
 --- !u!54 &908505402
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2340,6 +2347,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &908505403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908505396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27236fc1780a67e41858ec2f16030609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _min: {x: -1000, y: -1000}
+  _max: {x: 1000, y: 1000}
+  _height: 100
+  _generator: {fileID: 1554781799}
+  _terrainController: {fileID: 487562187}
+  _seedCheckpoint: {fileID: 1004009518}
 --- !u!1 &915345434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2568,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004009518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
+    type: 3}
+  m_PrefabInstance: {fileID: 350705209}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e7448c95c81f1409ff964362628a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1030571534
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,26 +3310,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fb6a103c4598143b5ff21c2b7a0d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plane: {fileID: 908505402}
+  terrainController: {fileID: 487562187}
+  switcher: {fileID: 1554781801}
   _checkpoint: {fileID: 8667647573171359797, guid: 84e1524a5e883af40bb9feedb2dfaf36,
     type: 3}
   _portal: {fileID: -6250695516819155446, guid: b0f4de0dd41b70344990323bfefdad8e,
     type: 3}
-  switcher: {fileID: 1554781801}
-  _portalFrequency: 2
-  terrainController: {fileID: 487562187}
-  _minRadius: 100
-  _maxRadius: 140
+  _portalFrequency: 10
+  _minRadius: 150
+  _maxRadius: 180
   _lateralRadius: 40
   _waterLevel: {fileID: 1903168319}
   _heightRadius: 50
-  _portalHeight: 75
+  _portalHeight: 65
   _terrainLayers:
     serializedVersion: 2
     m_Bits: 64
   _targetGenerator: {fileID: 486563237}
-  plane: {fileID: 908505402}
-  _cubeEventDurationSeconds: 10
+  _cubeEventDurationSeconds: 15
   _cubeEventFrequency: 3
+  checkpointCount: 1
 --- !u!4 &1554781800
 Transform:
   m_ObjectHideFlags: 0
@@ -3931,7 +3969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 2114798718}
-  _startingTime: 15
+  _startingTime: 16
   _gameOver: {fileID: 908271671}
   _scorePerSecond: 10
   _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}

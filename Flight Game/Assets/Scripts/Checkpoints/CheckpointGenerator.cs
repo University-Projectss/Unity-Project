@@ -65,7 +65,8 @@ public class CheckpointGenerator : MonoBehaviour
     private float _minHeight;
     private float _maxHeight;
 
-    private int _checkpointCount = 1;
+    [HideInInspector]
+    public int checkpointCount = 0;
 
     private bool _cubeEvent = false;
     private bool _triggerPortal = false;
@@ -101,13 +102,13 @@ public class CheckpointGenerator : MonoBehaviour
         if (!_triggerPortal)
         {
 
-            ++_checkpointCount;
-            portal = _checkpointCount % (_portalFrequency + 1) == 0;
-            _cubeEvent = _checkpointCount % (_cubeEventFrequency * (_portalFrequency + 1)) == 0;
+            ++checkpointCount;
+            portal = checkpointCount % (_portalFrequency + 1) == 0;
+            _cubeEvent = checkpointCount % (_cubeEventFrequency * (_portalFrequency + 1)) == 0;
 
             if (_cubeEvent)
             {
-                _checkpointCount = 0;
+                checkpointCount = 0;
                 _triggerPortal = true;
             }
         }
