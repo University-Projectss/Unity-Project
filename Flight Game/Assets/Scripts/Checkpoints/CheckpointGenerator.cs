@@ -71,7 +71,7 @@ public class CheckpointGenerator : MonoBehaviour
     private bool _cubeEvent = false;
     private bool _triggerPortal = false;
 
-    private Checkpoint _lastCheckpoint;
+    public Checkpoint lastCheckpoint;
 
     private void Awake()
     {
@@ -93,7 +93,7 @@ public class CheckpointGenerator : MonoBehaviour
 
         if (lastCheckpoint == null)
         {
-            lastCheckpoint = _lastCheckpoint;
+            lastCheckpoint = this.lastCheckpoint;
         }
 
         Vector3 lastCheckpointPosition = planePos;
@@ -156,7 +156,7 @@ public class CheckpointGenerator : MonoBehaviour
 
         checkpoint.countdownTimer = lastCheckpoint.countdownTimer;
         checkpoint.generator = this;
-        _lastCheckpoint = checkpoint;
+        this.lastCheckpoint = checkpoint;
     }
 
     private bool PlacementIsValid(Checkpoint checkpoint)
