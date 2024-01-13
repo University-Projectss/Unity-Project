@@ -121,13 +121,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownTimer: {fileID: 0}
   generator: {fileID: 0}
-  timerGain: 20
+  timerGain: 10
   scoreGain: 1000
   _minRespawnTime: 0
   _maxRespawnTime: 0
-  respawnTimePercentage: 1
-  _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
+  _respawnTimePercentage: 0
+  _material: {fileID: 0}
   _waypoint: {fileID: 8900662837559913722}
+  _scoreCounter: {fileID: 11400000, guid: a26bdaab31ee09847b7d6acc804d23fa, type: 2}
 --- !u!1 &8900662837559913722
 GameObject:
   m_ObjectHideFlags: 0
