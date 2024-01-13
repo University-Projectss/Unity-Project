@@ -40,7 +40,7 @@ public class Checkpoint : MonoBehaviour
 
     protected virtual void Start()
     {
-        float respawnTime = Mathf.Clamp(countdownTimer.RemainingTime * respawnTimePercentage, _minRespawnTime, _maxRespawnTime);
+        float respawnTime = Mathf.Clamp(countdownTimer.RemainingTime * _respawnTimePercentage, _minRespawnTime, _maxRespawnTime);
         StartCoroutine(RespawnCoroutine(respawnTime));
     }
 
