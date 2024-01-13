@@ -66,7 +66,7 @@ public class CheckpointGenerator : MonoBehaviour
     private float _maxHeight;
 
     [HideInInspector]
-    public int checkpointCount = 1;
+    public int checkpointCount = 0;
 
     private bool _cubeEvent = false;
     private bool _triggerPortal = false;
