@@ -32,16 +32,14 @@ public class MainMenu : MonoBehaviour
         {
             PlayGameButton();
         }
-        else
-        {
-            // _gameover.ResumeGame();
-        }
-
     }
-        
+
     public void SwitchToCasual() => SceneManager.LoadScene("Casual Mode");
+
     public void SwitchToEasy() => SceneManager.LoadScene("Easy Mode");
+
     public void SwitchToNormal() => SceneManager.LoadScene("Main Scene");
+
     public void QuitGameButton() => Application.Quit();
 
     public void PlayGameButton()
