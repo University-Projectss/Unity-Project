@@ -24,6 +24,9 @@ public class GameOver : MonoBehaviour
     private GameObject _plane;
 
     [SerializeField]
+    private GameObject _menuButton;
+
+    [SerializeField]
     private AudioSource _audioSource;
 
     public bool Over { get; private set; }
@@ -48,17 +51,32 @@ public class GameOver : MonoBehaviour
         gameObject.SetActive(true);
         _quitButton.SetActive(true);
         _replayButton.SetActive(true);
+        _menuButton.SetActive(true);
     }
 
     public void RestartGameButton()
     {
+        MainMenu.load = false;
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
         gameObject.SetActive(false);
         _quitButton.SetActive(false);
         _replayButton.SetActive(false);
-        Over = false;
+        _menuButton.SetActive(false);
         ResumeGame();
+        Over = false;
+    }
+
+    public void MainMenuButton()
+    {
+        MainMenu.load = true;
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+        gameObject.SetActive(false);
+        _quitButton.SetActive(false);
+        _replayButton.SetActive(false);
+        _menuButton.SetActive(false);
+        Over = false;
     }
 
     public void QuitGameButton() => Application.Quit();
