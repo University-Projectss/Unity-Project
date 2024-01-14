@@ -68,6 +68,11 @@ public class TerrainController : MonoBehaviour {
 
     private Texture2D[] loadedTextures;
 
+
+    private void Awake()
+    {
+        _seed = (int)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+    }
     public void Generate()
     {
         // Check if a noise texture is provided

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0753326, g: 0.36649126, b: 1.2574544, a: 1}
+  m_IndirectSpecularColor: {r: 0.07534479, g: 0.36650163, b: 1.2579302, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2562,7 +2562,7 @@ MonoBehaviour:
   _wingPower: 5
   _rudderPower: 3
   _inducedDragFactor: 1
-  _angularDragCoefficients: {x: 2, y: 2, z: 2}
+  _angularDragCoefficients: {x: 2, y: 2, z: 5}
   _liftCoefficientCurve:
     serializedVersion: 2
     m_Curve:
@@ -2656,7 +2656,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _steeringLimits: {x: 0.03, y: 0.01, z: 0.06}
+  _steeringLimits: {x: 0.03, y: 0.01, z: 0.1}
   _initialSpeed: 50
 --- !u!54 &908505402
 Rigidbody:
@@ -4624,7 +4624,7 @@ MonoBehaviour:
   _lateralRadius: 40
   _waterLevel: {fileID: 1903168319}
   _heightRadius: 50
-  _portalHeight: 65
+  _portalHeight: 70
   _terrainLayers:
     serializedVersion: 2
     m_Bits: 64
